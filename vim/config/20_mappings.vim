@@ -28,7 +28,9 @@ cnoremap ~~c <CR>:t''<CR>
 cnoremap ~~m <CR>:m''<CR>
 cnoremap ~~d <CR>:d<CR>``
 
-"NERDTree remap
+"peform macros with Q
+nnoremap Q @q
+vnoremap Q :norm @q<cr>
 
 
 " Insert the required number of spaces to move the cursor to align with the next
@@ -40,7 +42,7 @@ cnoremap ~~d <CR>:d<CR>``
 "
 " The quick brown fox jumped over the lazy dog.
 "      |
-"      
+"
 " With the cursor at the location of the pipe, pressing <Leader><Tab> will
 " insert spaces adequate to move the cursor to directly beneath the 'b' in
 " 'brown'. Pressing <Leader><Tab> again will move the cursor to beneath the 'f'
@@ -95,8 +97,8 @@ inoremap <Leader><Tab> <Esc>:call HangingIndentAlignCol()<CR>a
 nnoremap <Leader><Space> 10i<Space><Esc>l
 
 " Change colors (mnemonic: change your colors {light|dark}).
-nnoremap cycl :colorscheme Tomorrow<CR>
-nnoremap cycd :colorscheme xoria256<CR>
+nnoremap cycl :colorscheme Tomorrow<CR>   
+nnoremap cycd :colorscheme xoria256<CR>    
 
 " Pass the selected lines through tidy with ,x.
 vnoremap <Leader>x :<Home>silent <End>!tidy -q -i --show-errors 0<CR>
@@ -168,8 +170,10 @@ inoremap <C-e> <Esc>A
 " Allow the up and down arrows to move between LOGICAL lines of text on the
 " screen, even if they are wrapped portions of the same LITERAL line of text.
 " Works in any mode.
-noremap <Up> gk
-noremap <Down> gj
+noremap k gk
+noremap j gj
+noremap 0 g0
+noremap $ g$
 
 " Mappings for easier split window navigation:
 " Ctrl-w followed by u and d for up and down moves you to the next window
