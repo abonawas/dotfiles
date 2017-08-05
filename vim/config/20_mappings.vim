@@ -32,6 +32,14 @@ cnoremap ~~d <CR>:d<CR>``
 nnoremap Q @q
 vnoremap Q :norm @q<cr>
 
+"add line above curse and below
+nnoremap <Leader>k mlO<Esc>`l
+nnoremap <Leader>j mlo<Esc>`l
+
+"quickly save and quit files
+noremap <leader>q :q<cr>
+nnoremap <leader>w :w<cr>
+inoremap <leader>w <C-c>:w<cr>
 
 " Insert the required number of spaces to move the cursor to align with the next
 " column of text based upon the line immediately above the cursor's location.
