@@ -1,0 +1,138 @@
+snippet doc_f "doc_f" !b
+/**
+ * $2
+ * @return ${4:void}
+ **/
+${1:public }function ${2:someFunc}(${3}) {
+  ${6}
+}
+endsnippet
+
+snippet doc_vp "doc_vp" !b
+/**
+ * ${1:undocumented class variable}
+ *
+ * @var ${2:string}
+ */${3}
+endsnippet
+
+# Class Variable
+snippet doc_v "doc_v" !b
+/**
+ * ${3:undocumented class variable}
+ *
+ * @var ${4:string}
+ */
+${1:var} $${2};${5}
+endsnippet
+
+snippet pub "Public function" !b
+public function ${1:name}(${2:$param}) {
+  ${VISUAL}${3:return null;}
+}
+$0
+endsnippet
+
+snippet pro "Protected function" !b
+protected function ${1:name}(${2:$param}) {
+  ${VISUAL}${3:return null;}
+}
+$0
+endsnippet
+
+snippet pri "Private function" !b
+private function ${1:name}(${2:$param}) {
+  ${VISUAL}${3:return null;}
+}
+$0
+endsnippet
+
+snippet pubs "Public static function" !b
+public static function ${1:name}(${2:$param}) {
+  ${VISUAL}${3:return null;}
+}
+$0
+endsnippet
+
+snippet pros "Protected static function" !b
+protected static function ${1:name}(${2:$param}) {
+  ${VISUAL}${3:return null;}
+}
+$0
+endsnippet
+
+snippet pris "Private static function" !b
+private static function ${1:name}(${2:$param}) {
+  ${VISUAL}${3:return null;}
+}
+$0
+endsnippet
+
+snippet doc_fp "Document function, post" !b
+/**
+ * ${1:undocumented function}
+ *
+ * @return ${2:void}
+ */${3}
+endsnippet
+
+snippet fu "Function snip" !b
+/**
+ * Function $3
+ *
+ * @return ${5:string} ${6:Returns a string}
+ */
+${1:public }${2:static }function ${3:name}(${4:$param}) {
+  // ${7:Code}
+  return null;
+}
+$0
+endsnippet
+
+snippet foreach "Foreach loop"
+foreach ($${1:variable} as $${3:value}) {
+  ${VISUAL}${4}
+}
+$0
+endsnippet
+
+snippet class "Class declaration template" !b
+/**
+ * Class ${1:`!p snip.rv=snip.fn.split('.')[0]`} 
+ *
+ * @author ${2:`!v g:snips_author`}
+ */
+class $1 {
+  public function ${3:__construct}(${4:$options}) {
+    ${4:// code}
+  }
+}
+endsnippet
+
+snippet doc_cp "Class declaration, post" !b
+/**
+ * ${1:undocumented class}
+ *
+ * @author ${3:`!v g:snips_author`}
+ */${4}
+endsnippet
+
+snippet doc_h "File (head) document block" !b
+/**
+ * ${1}
+ *
+ * PHP Version 5
+ *
+ * @author    Aaron Bieber <abieber@wayfair.com>
+ * @copyright `!v strftime('%Y')` Wayfair LLC, All Rights Reserved
+ * @version   SVN: $Id$
+ */
+endsnippet
+
+snippet array
+$${1:array_name} = array('$2' => $3);$4
+endsnippet
+
+snippet param
+@param ${1:string} $${2:foo} ${3:Description}
+endsnippet

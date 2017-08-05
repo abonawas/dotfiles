@@ -1,0 +1,12 @@
+snippet today Today's date
+	[`strftime("%a %Y-%m-%d")`]${1}
+snippet tomorrow Tomorrow's date
+	[`strftime("%a %Y-%m-%d", localtime()+86400)`]
+snippet yesterday Yesterday's date
+	[`strftime("%a %Y-%m-%d", localtime()-86400)`]
+snippet nextweek Date one week from today
+	[`strftime("%a %Y-%m-%d", localtime()-604800)`]
+snippet nextmonth Date one month from today
+	[`substitute(system("ruby -r 'date' -e \"print ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][(Date.today>>1).wday] + ' ' + (Date.today>>1).to_s;\""), "\n\+$", "", "")`]${1}
+snippet now The current time to the minute
+	[`strftime("%H:%M")`]${1}
