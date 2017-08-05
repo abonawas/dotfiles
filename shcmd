@@ -1,8 +1,6 @@
-mkdir ~/dotfiles
 mkdir ~/tmp/
 mkdir ~/tmp/vim_backups
 mkdir ~/tmp/vim_undo
 ln -s ~/dotfiles/vim .vim
 ln -s ~/dotfiles/tmux.conf .tmux.conf
-ln -s ~/dotfiles/zshrc .zshrc
 ln -s ~/dotfiles/vimrc .vimrc
