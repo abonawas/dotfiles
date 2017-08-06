@@ -1,10 +1,8 @@
-mkdir ~/dotfiles
 mkdir ~/tmp/
 mkdir ~/tmp/vim_backups
 mkdir ~/tmp/vim_undo
 ln -s ~/dotfiles/vim .vim
 ln -s ~/dotfiles/tmux.conf .tmux.conf
-ln -s ~/dotfiles/zshrc .zshrc
 ln -s ~/dotfiles/vimrc .vimrc
 defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)

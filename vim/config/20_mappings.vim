@@ -21,7 +21,8 @@ inoremap ;n <input type="#" name="<++>" size="<++>" value="" /><Esc>F#cl
 
 """END""END
 
-
+""quickly execute last shell command
+nnoremap <Leader>x :!!<CR>
 
 " Allows incsearch highlighting for range commands.
 cnoremap ~~c <CR>:t''<CR>
