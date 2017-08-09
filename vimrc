@@ -29,11 +29,11 @@ Plugin 'itchyny/lightline.vim'
 " Plugin 'StanAngeloff/php.vim'
 
 " My own stuff.
-Plugin 'aaronbieber/vim-quicktask'
-Plugin 'aaronbieber/vim-vault'
+" Plugin 'aaronbieber/vim-quicktask'
+" Plugin 'aaronbieber/vim-vault'
 
 " Nyan cat is critical.
-Plugin 'koron/nyancat-vim'
+" Plugin 'koron/nyancat-vim'
 
 " Tim Pope FTW.
 Plugin 'tpope/vim-fugitive'
@@ -52,9 +52,10 @@ Plugin 'scrooloose/syntastic'
 
 " Helpers.
 Plugin 'jeetsukumaran/vim-gazetteer'
-Plugin 'Keithbsmiley/investigate.vim'
+" Plugin 'Keithbsmiley/investigate.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'christoomey/vim-tmux-runner'
 Plugin 'ervandew/supertab'
 Plugin 'gcmt/wildfire.vim'
 Plugin 'honza/vim-snippets'

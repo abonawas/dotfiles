@@ -83,8 +83,8 @@ else
 "    if !filewritable("~/tmp/vim_backups")
 "        call mkdir("~/tmp/vim_backups")
 "    endif
-    set backupdir=~/tmp/vim_backups
-    set dir=~/tmp/vim_backups
+    set backupdir=~/tmp/vim_backups//
+    set dir=~/tmp/vim_backups//
     let g:Reference_File_Location='~/u/reference'
     let g:Todo_List_Location='~/Dropbox/TODO.txt'
 
@@ -93,7 +93,7 @@ else
 "        if !filewritable("~/tmp/vim_undo")
 "            call mkdir("~/tmp/vim_undo")
 "        endif
-        set undodir=~/tmp/vim_undo
+        set undodir=~/tmp/vim_undo//
     endif
 endif
 
