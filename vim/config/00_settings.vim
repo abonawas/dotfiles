@@ -90,7 +90,7 @@ endif
 
 " --------------------------------- TagBar -----------------------------------
 let g:tagbar_autoclose = 1
-nmap <Leader>t :TagbarToggle<CR>
+nmap <Leader>tt :TagbarToggle<CR>
 
 " -------------------------------- NERDTree ----------------------------------
 map <c-t> :NERDTreeToggle<CR>
@@ -118,7 +118,7 @@ let g:ctrlp_custom_ignore = {
 
 " ------------------------------- Quicktask ----------------------------------
 let g:quicktask_autosave = 1
-let g:quicktask_snip_path = '~/Dropbox/snips'
+let g:quicktask_snip_path = '~/gdrive/snips'
 let g:quicktask_snip_win_maximize = 1
 
 " -------------------------------- Snippets ----------------------------------

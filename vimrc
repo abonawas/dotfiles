@@ -29,7 +29,7 @@ Plugin 'itchyny/lightline.vim'
 " Plugin 'StanAngeloff/php.vim'
 
 " My own stuff.
-" Plugin 'aaronbieber/vim-quicktask'
+Plugin 'aaronbieber/vim-quicktask'
 " Plugin 'aaronbieber/vim-vault'
 
 " Nyan cat is critical.

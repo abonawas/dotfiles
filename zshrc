@@ -3,6 +3,8 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/EcoHydro/dotfiles/oh-my-zsh
+alias emacs="emacs --no-window-system"
+alias spacemacs="emacs"
 alias ana="~/anaconda/bin/python"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
