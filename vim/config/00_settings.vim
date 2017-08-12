@@ -118,7 +118,7 @@ let g:ctrlp_custom_ignore = {
 
 " ------------------------------- Quicktask ----------------------------------
 let g:quicktask_autosave = 1
-let g:quicktask_snip_path = '~/gdrive/snips'
+let g:quicktask_snip_path = '~/gdrive/org'
 let g:quicktask_snip_win_maximize = 1
 
 " -------------------------------- Snippets ----------------------------------
