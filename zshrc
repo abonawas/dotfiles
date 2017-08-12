@@ -2,7 +2,9 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/EcoHydro/dotfiles/oh-my-zsh
+export ZSH=~/dotfiles/oh-my-zsh
+
+alias vim="mvim -v"
 alias emacs="emacs --no-window-system"
 alias spacemacs="emacs"
 alias ana="~/anaconda/bin/python"
