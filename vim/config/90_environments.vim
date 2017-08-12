@@ -86,7 +86,7 @@ else
     set backupdir=~/tmp/vim_backups//
     set dir=~/tmp/vim_backups//
     let g:Reference_File_Location='~/u/reference'
-    let g:Todo_List_Location='~/Dropbox/TODO.txt'
+    let g:Todo_List_Location='~/gdrive/org/TODO.txt'
 
     if v:version > 702
         " Only for versions above 7.2 where these features are available.
