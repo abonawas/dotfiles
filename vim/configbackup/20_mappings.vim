@@ -1,5 +1,3 @@
-"my changes -Omar
-"nnoremap ; :
 
 """BASIC TOOLS
 "Navigating with guides
@@ -9,10 +7,10 @@ nnoremap ;; <Esc>/<++><Enter>"_c4l
 """"HTML
 inoremap ;b <b></b><Space><++><Esc>FbT>i
 inoremap ;i <em></em><Space><++><Esc>FeT>i
-inoremap ;1 <h1></h1><Enter><Enter><++><Esc>2kf<i
-inoremap ;2 <h2></h2><Enter><Enter><++><Esc>2kf<i
-inoremap ;3 <h3></h3><Enter><Enter><++><Esc>2kf<i
-inoremap ;p <p></p><Enter><Enter><++><Esc>02kf>a
+inoremap ;1 <h1>#</h1><++><Esc>F#cl
+inoremap ;2 <h2>#</h2><++><Esc>F#cl
+inoremap ;3 <h3>#</h3><++><Esc>F#cl
+inoremap ;p <p>#</p><++><Esc>F#cl
 inoremap ;a <a<Space>href=""><++></a><Space><++><Esc>F"i
 inoremap ;ul <ul><Enter><li></li><Enter></ul><Enter><Enter><++><Esc>03kf<i
 inoremap ;li <Esc>o<li></li><Esc>F>a
@@ -99,7 +97,7 @@ function! HangingIndentAlignCol()
     endif
 endfunction
 
-inoremap <Leader><Tab> <Esc>:call HangingIndentAlignCol()<CR>a
+"inoremap <Leader><Tab> <Esc>:call HangingIndentAlignCol()<CR>a
 
 " Add ten spaces before the cursor with ,<Space>. Handy for re-indenting lines
 " that don't automatically wrap (like wrapping docblock comments).
@@ -132,6 +130,7 @@ nnoremap <Leader>, :set paste!<CR>
 " Easily edit the alternate file without having to reach up and hit Ctrl-6.
 " Because my <Leader> is set to comma, I just hit `,,` to run this.
 nnoremap <Leader>. :e #<CR>
+
 
 " Toggle search highlighting.
 nnoremap <Space> :set hlsearch!<CR>
@@ -200,7 +199,7 @@ nnoremap <C-l> <C-w>l
 " Remap the omnicompletion commands because all the <C-x> shit is annoying.
 
 " Words
-"inoremap <Leader><Tab> <C-x><C-o>
+inoremap <Leader><Tab> <C-x><C-o>
 
 " Filenames
 inoremap <Leader>: <C-x><C-f>
@@ -225,5 +224,7 @@ vnoremap # "zy?\V<C-r>z<CR>
 
 " Let ,a start an easy align command for me.
 vnoremap <Leader>a :EasyAlign<CR>
+
+
 
 " vim: set et ts=4 sw=4 :

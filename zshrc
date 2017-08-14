@@ -8,6 +8,7 @@ alias vim="mvim -v"
 alias emacs="emacs --no-window-system"
 alias spacemacs="emacs"
 alias ana="~/anaconda/bin/python"
+alias coda="~/anaconda/bin/coda"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
