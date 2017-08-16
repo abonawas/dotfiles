@@ -1,10 +1,32 @@
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 mkdir ~/tmp/
 mkdir ~/tmp/vim_backups
 mkdir ~/tmp/vim_undo
 ln -s ~/dotfiles/vim .vim
+ln -s ~/dotfiles/zshrc .zshrc
 ln -s ~/dotfiles/tmux.conf .tmux.conf
 ln -s ~/dotfiles/vimrc .vimrc
 defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
+defaults write com.apple.dock autohide-time-modifier -float 0.15;killall Dock
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 
 https://github.com/powerline/fonts
+
+brew install git
+brew install python3
+brew install tmux
+brew install macvim
+brew install docker
+brew linkapps
+brew install reattach-to-user-namespace
+pip3 install bpytho
+bpython
+brew install mysql
+pip3 install mycli
+mycli
+mysql.server start
+rmdir dotfiles
+mv .oh-my-zsh 
+source .zshrc
