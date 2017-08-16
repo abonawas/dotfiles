@@ -69,6 +69,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'rking/ag.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'davidhalter/jedi-vim'
 " This plug-in is huge and causes errors during BundleInstall, but it's the
 " de-facto standard for LaTeX so I'm leaving it here as a reminder for the
 " day I want to edit LaTeX, which is not uncommon for me at all.
@@ -196,6 +197,17 @@ endif
 " #          Configure any plugin-specific settings and mappings.            #
 " ############################################################################
 
+" ----------------------------- Jedi --------------------------------
+
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = ""
+"let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<leader><leader>"
+let g:jedi#rename_command = "<leader>r"
+
 " --------------------------------- TagBar -----------------------------------
 let g:tagbar_autoclose = 1
 nmap <Leader>tt :TagbarToggle<CR>
@@ -278,6 +290,21 @@ let g:EasyMotion_smartcase = 1
 
 "}}}
 "{{{Functions
+
+"Better Fold
+function! NeatFoldText()
+  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+  let lines_count = v:foldend - v:foldstart + 1
+  let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
+  let foldchar = matchstr(&fillchars, 'fold:\zs.')
+  let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
+  let foldtextend = lines_count_text . repeat(foldchar, 8)
+  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+endfunction
+set foldtext=NeatFoldText()
+"""""
+
 
 " Search for the next line with the same indention (nice for finding start/end
 " of blocks)
@@ -581,7 +608,8 @@ inoremap kj <Esc>
 nnoremap <Leader>rp vipJVgq
 
 " Toggle paste mode.
-nnoremap <Leader>, :set paste!<CR>
+
+"nnoremap <Leader><Leader> :set paste!<CR>
 
 " Easily edit the alternate file without having to reach up and hit Ctrl-6.
 " Because my <Leader> is set to comma, I just hit `,,` to run this.
@@ -656,13 +684,14 @@ nnoremap <C-l> <C-w>l
 " Remap the omnicompletion commands because all the <C-x> shit is annoying.
 
 " Words
-inoremap <Leader><Tab> <C-x><C-o>
+"inoremap <Leader><Tab> <C-x><C-o>
 
 " Filenames
 inoremap <Leader>: <C-x><C-f>
 
 " Lines
 inoremap <Leader>= <C-x><C-l>
+
 
 " --------------------------------- Ctrl-P ------------------------------------
 nnoremap <C-p> :CtrlP<CR>
@@ -678,6 +707,7 @@ vnoremap D y'>p']
 " which I know exists.
 vnoremap * "zy/\V<C-r>z<CR>
 vnoremap # "zy?\V<C-r>z<CR>
+
 
 " Let ,a start an easy align command for me.
 vnoremap <Leader>a :EasyAlign<CR>
