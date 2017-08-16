@@ -1,13 +1,10 @@
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-mkdir ~/tmp/
-mkdir ~/tmp/vim_backups
-mkdir ~/tmp/vim_undo
-ln -s ~/dotfiles/vim .vim
-ln -s ~/dotfiles/zshrc .zshrc
-ln -s ~/dotfiles/tmux.conf .tmux.conf
-ln -s ~/dotfiles/vimrc .vimrc
+
+##Mac Setup
+
+1. install xcode.app
+2. xcode-select --install
+
 defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 defaults write com.apple.dock autohide-time-modifier -float 0.15;killall Dock
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
@@ -23,6 +20,15 @@ brew install macvim --with-python3 --HEAD
 
 
 https://github.com/powerline/fonts
+=======
+
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+
+##Brew:
+
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 brew install git
 brew install python3
@@ -35,8 +41,20 @@ pip3 install bpytho
 bpython
 brew install mysql
 pip3 install mycli
-mycli
 mysql.server start
 rmdir dotfiles
+
+mkdir ~/tmp/
+mkdir ~/tmp/vim_backups
+mkdir ~/tmp/vim_undo
+ln -s ~/dotfiles/vim .vim
+ln -s ~/dotfiles/zshrc .zshrc
+ln -s ~/dotfiles/tmux.conf .tmux.conf
+ln -s ~/dotfiles/vimrc .vimrc
+
+
+https://github.com/powerline/fonts
+
+
 mv .oh-my-zsh 
 source .zshrc
