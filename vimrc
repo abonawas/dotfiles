@@ -243,8 +243,11 @@ let g:quicktask_snip_win_maximize = 1
 
 " -------------------------------- Snippets ----------------------------------
 let g:snips_author = 'Aaron Bieber <abieber@wayfair.com>'
-let g:UltiSnipsSnippetDirectories = ["UltiSnips", "ultisnips"]
+"let g:UltiSnipsSnippetDirectories = ["UltiSnips", "ultisnips"]
+let g:UltiSnipsSnippetDirectories = ["UltiSnips"]
 let g:UltiSnipsDontReverseSearchPath = "0"
+let g:UltiSnipsJumpForwardTrigger="jj"
+let g:UltiSnipsJumpBackwardTrigger="kk"
 
 " -------------------------------- Syntastic ---------------------------------
 let g:syntastic_always_populate_loc_list=1
@@ -290,6 +293,16 @@ let g:EasyMotion_smartcase = 1
 
 "}}}
 "{{{Functions
+"
+function! ToggleErrors()
+    if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
+         " No location/quickfix list shown, open syntastic error location panel
+         Errors
+    else
+        lclose
+    endif
+endfunction
+nnoremap <silent> <C-e> :<C-u>call ToggleErrors()<CR>
 
 "Better Fold
 function! NeatFoldText()
@@ -635,7 +648,7 @@ nnoremap <Leader>s :SyntasticToggleMode<CR>
 nnoremap <Leader>S :call StripTrailingWhitespace()<CR>
 
 " Create surrounding HTML tags out of the word near the cursor.
-inoremap <C-a> <Esc>viwc<"></"><Esc>cit
+inoremap <Leader>a <Esc>viwc<"></"><Esc>cit
 
 " Set Shift-Left and Shift-Right to scroll left and right. Helpful while using
 " the diff function.
@@ -659,6 +672,7 @@ nnoremap ]j <C-i>
 " Ctrl-E while in insert mode moves the cursor to the end of the line, a la
 " OS X and other UN*X interfaces (e.g. bash).
 inoremap <C-e> <Esc>A
+inoremap <C-a> <Esc>I
 
 " Allow the up and down arrows to move between LOGICAL lines of text on the
 " screen, even if they are wrapped portions of the same LITERAL line of text.
