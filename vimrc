@@ -1077,5 +1077,7 @@ endfunction
 
 
 
+hi Normal ctermbg=none
+highlight NonText ctermbg=none
 
 " vim: set et ts=4 sw=4 :
