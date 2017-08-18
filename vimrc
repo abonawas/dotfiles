@@ -293,16 +293,16 @@ let g:EasyMotion_smartcase = 1
 
 "}}}
 "{{{Functions
-"
-function! ToggleErrors()
-    if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
-         " No location/quickfix list shown, open syntastic error location panel
-         Errors
-    else
-        lclose
-    endif
-endfunction
-nnoremap <silent> <C-e> :<C-u>call ToggleErrors()<CR>
+
+"function! ToggleErrors()
+"    if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
+"         " No location/quickfix list shown, open syntastic error location panel
+"         Errors
+"    else
+"        lclose
+"    endif
+"endfunction
+"nnoremap <silent> <C-e> :<C-u>call ToggleErrors()<CR>
 
 "Better Fold
 function! NeatFoldText()
@@ -552,25 +552,6 @@ endfunction
 ""folding toggle
 nnoremap <Space> za
 
-"""BASIC TOOLS
-"Navigating with guides
-inoremap ;; <Esc>/<++><Enter>"_c4l
-nnoremap ;; <Esc>/<++><Enter>"_c4l
-
-""""HTML
-inoremap ;b <b></b><Space><++><Esc>FbT>i
-inoremap ;i <em></em><Space><++><Esc>FeT>i
-inoremap ;1 <h1>#</h1><++><Esc>F#cl
-inoremap ;2 <h2>#</h2><++><Esc>F#cl
-inoremap ;3 <h3>#</h3><++><Esc>F#cl
-inoremap ;p <p>#</p><++><Esc>F#cl
-inoremap ;a <a<Space>href=""><++></a><Space><++><Esc>F"i
-inoremap ;ul <ul><Enter><li></li><Enter></ul><Enter><Enter><++><Esc>03kf<i
-inoremap ;li <Esc>o<li></li><Esc>F>a
-inoremap ;ol <ol><Enter><li></li><Enter></ol><Enter><Enter><++><Esc>03kf<i
-inoremap ;n <input type="#" name="<++>" size="<++>" value="" /><Esc>F#cl
-
-"""END""END
 
 ""quickly execute last shell command
 nnoremap <Leader>x :VtrSendCommandToRunner<CR>
