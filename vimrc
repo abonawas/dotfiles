@@ -163,7 +163,7 @@ set clipboard=unnamed
 " endif
 
 " Set my colorscheme.
-colorscheme molokai
+colorscheme afterglow
 
 " Don't create backup files when editing in these locations.
 set backupskip=/tmp/*,/private/tmp/*
@@ -732,7 +732,7 @@ endif
 "{{{Lightline
 
 let g:lightline = {
-      \ 'colorscheme': 'powerline',
+      \ 'colorscheme': 'jellybeans',
       \ 'mode_map': { 'c': 'NORMAL' },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
