@@ -4,11 +4,26 @@
 
 1. install xcode.app
 2. xcode-select --install
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer   #relating to building vim
+
+
 
 defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
 defaults write com.apple.dock autohide-time-modifier -float 0.15;killall Dock
 defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 
+pip3 install jedi
+brew install tidy-html5
+brew install ctags
+brew install mycli 
+brew  linkapps
+
+brew unlink  macvim or brew uninstall macvim
+brew install macvim --with-python3 --HEAD
+
+
+https://github.com/powerline/fonts
+=======
 
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
