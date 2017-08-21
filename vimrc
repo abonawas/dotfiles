@@ -163,7 +163,7 @@ set clipboard=unnamed
 " endif
 
 " Set my colorscheme.
-colorscheme afterglow
+colorscheme molokai
 
 " Don't create backup files when editing in these locations.
 set backupskip=/tmp/*,/private/tmp/*
@@ -203,8 +203,8 @@ let g:jedi#goto_command = "<leader>d"
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = ""
 let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = ""
-"let g:jedi#usages_command = "<leader>n"
+"let g:jedi#usages_command = ""
+let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<leader><leader>"
 let g:jedi#rename_command = "<leader>r"
 
@@ -732,7 +732,7 @@ endif
 "{{{Lightline
 
 let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
+      \ 'colorscheme': 'powerline',
       \ 'mode_map': { 'c': 'NORMAL' },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
