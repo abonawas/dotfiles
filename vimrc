@@ -70,6 +70,7 @@ Plugin 'rking/ag.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'nvie/vim-flake8'
 " This plug-in is huge and causes errors during BundleInstall, but it's the
 " de-facto standard for LaTeX so I'm leaving it here as a reminder for the
 " day I want to edit LaTeX, which is not uncommon for me at all.
@@ -259,6 +260,8 @@ let g:UltiSnipsJumpBackwardTrigger="kk"
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
 "let g:syntastic_php_checkers = ['php', 'phpcs']
+let g:syntastic_python_checkers=['flake8']
+"let g:syntastic_python_flake8_args='--ignore=E501,E225'
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_quiet_messages = {
