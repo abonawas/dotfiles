@@ -211,7 +211,8 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<leader><leader>"
 let g:jedi#rename_command = "<leader>r"
-autocmd FileType python setlocal completeopt-=preview
+let g:jedi#show_call_signatures = "2"
+"autocmd FileType python setlocal completeopt-=preview
 
 " --------------------------------- TagBar -----------------------------------
 let g:tagbar_autoclose = 1
