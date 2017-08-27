@@ -70,6 +70,7 @@ Plugin 'rking/ag.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'nvie/vim-flake8'
 " This plug-in is huge and causes errors during BundleInstall, but it's the
 " de-facto standard for LaTeX so I'm leaving it here as a reminder for the
 " day I want to edit LaTeX, which is not uncommon for me at all.
@@ -164,6 +165,13 @@ set clipboard=unnamed
 
 " Set my colorscheme.
 colorscheme molokai
+<<<<<<< HEAD
+=======
+
+if $TERM == "xterm-256color"
+  set t_Co=256
+endif
+>>>>>>> e5179d40b669531dedd38534b047d11c25868f28
 
 " Don't create backup files when editing in these locations.
 set backupskip=/tmp/*,/private/tmp/*
@@ -203,10 +211,12 @@ let g:jedi#goto_command = "<leader>d"
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = ""
 let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = ""
-"let g:jedi#usages_command = "<leader>n"
+"let g:jedi#usages_command = ""
+let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<leader><leader>"
 let g:jedi#rename_command = "<leader>r"
+let g:jedi#show_call_signatures = "2"
+"autocmd FileType python setlocal completeopt-=preview
 
 " --------------------------------- TagBar -----------------------------------
 let g:tagbar_autoclose = 1
@@ -252,9 +262,13 @@ let g:UltiSnipsJumpBackwardTrigger="kk"
 " -------------------------------- Syntastic ---------------------------------
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
-let g:syntastic_php_checkers = ['php', 'phpcs']
+"let g:syntastic_php_checkers = ['php', 'phpcs']
+let g:syntastic_python_checkers=['flake8']
+"let g:syntastic_python_flake8_args='--ignore=E501,E225'
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
+let g:syntastic_quiet_messages = {
+    \ "level":  "warnings"}
 
 let g:syntastic_php_phpcs_errorformat =
     \ '%-GFile\,Line\,Column\,Type\,Message\,Source\,Severity,'.
