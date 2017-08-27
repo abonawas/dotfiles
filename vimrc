@@ -165,13 +165,10 @@ set clipboard=unnamed
 
 " Set my colorscheme.
 colorscheme molokai
-<<<<<<< HEAD
-=======
 
 if $TERM == "xterm-256color"
   set t_Co=256
 endif
->>>>>>> e5179d40b669531dedd38534b047d11c25868f28
 
 " Don't create backup files when editing in these locations.
 set backupskip=/tmp/*,/private/tmp/*
