@@ -28,7 +28,7 @@ Plugin 'itchyny/lightline.vim'
 " Plugin 'StanAngeloff/php.vim'
 
 " My own stuff.
-Plugin 'aaronbieber/vim-quicktask'
+"Plugin 'aaronbieber/vim-quicktask'
 " Plugin 'aaronbieber/vim-vault'
 
 " Nyan cat is critical.
@@ -43,13 +43,12 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-obsession'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-scriptease'
 
 " Scrooloose FTW.
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 
-" Helpers.
+") Helpers.
 Plugin 'jeetsukumaran/vim-gazetteer'
 " Plugin 'Keithbsmiley/investigate.vim'
 Plugin 'SirVer/ultisnips'
@@ -70,7 +69,7 @@ Plugin 'rking/ag.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'davidhalter/jedi-vim'
-Plugin 'nvie/vim-flake8'
+"Plugin 'nvie/vim-flake8'
 " This plug-in is huge and causes errors during BundleInstall, but it's the
 " de-facto standard for LaTeX so I'm leaving it here as a reminder for the
 " day I want to edit LaTeX, which is not uncommon for me at all.
@@ -89,23 +88,14 @@ if &termencoding == ""
 endif
 set encoding=utf-8
 
-          
-" #############################################################################
-" #                 Bootstrap my configuration and plugins                    #
-" #############################################################################
-
 " Now enable syntax highlighting and filetype stuff.
 syntax on
 
 " Enable filetype handling.
 filetype plugin indent on
 
-" Now process all of the configuration files that I have stored in my 'config'
-" directory, which significantly cleans up this file.
-for filename in sort(split(glob('~/.vim/config/*.vim'), '\n'))
-    execute 'source '.filename
-endfor
 "}}}
+
 "{{{General
 
 " ---------------------- Basic configuration settings ------------------------
@@ -164,11 +154,16 @@ set clipboard=unnamed
 " endif
 
 " Set my colorscheme.
-colorscheme molokai
-
-if $TERM == "xterm-256color"
-  set t_Co=256
-endif
+colorscheme gruvbox
+"
+"if &term =~ '256color'
+"    " disable background color erase
+"    set t_ut=
+"endif
+"if $TERM == "xterm-256color"
+"  set t_Co=256
+"endif
+"set term=xterm-256color
 
 " Don't create backup files when editing in these locations.
 set backupskip=/tmp/*,/private/tmp/*
@@ -303,6 +298,7 @@ let g:EasyMotion_smartcase = 1
 
 
 "}}}
+
 "{{{Functions
 
 "function! ToggleErrors()
@@ -355,14 +351,14 @@ function! MatchIndent(direction)
     if !empty(a:direction) && a:direction == 'b'
         " Set the search flags to include 'backwards'.
         let search_flags .= 'b'
-        " Move the cursor up one line so reverse search doesn't match the 
+        " Move the cursor up one line so reverse search doesn't match the
         " current line.
         call cursor(line('.') - 1, col('.'))
     endif
 
     if !empty(indent)
         let next_matching_line = search(
-                '^' . indent_char . '\{' . len(indent[1]) . '}[^' . 
+                '^' . indent_char . '\{' . len(indent[1]) . '}[^' .
                 indent_char . ']', search_flags
             )
         "execute "normal /" . '^\t\{' . len(b:indent[1]) . '}[^\t]' . "\<CR>"
@@ -462,13 +458,13 @@ function! MarkdownFilter()
 endfunction
 
 function! StripTrailingWhitespace()
-    " Save the current line and column so that I can return the cursor to where 
+    " Save the current line and column so that I can return the cursor to where
     " it started.
     let line = line('.')
     let col = col('.')
 
-    " Run a substitution to remove trailing whitespace on all lines that do not 
-    " match an e-mail signature separator, which (by spec) should always have a 
+    " Run a substitution to remove trailing whitespace on all lines that do not
+    " match an e-mail signature separator, which (by spec) should always have a
     " space at the end of it.
     v/^-- /s/\s\+$//e
 
@@ -477,7 +473,7 @@ function! StripTrailingWhitespace()
 endfunction
 
 function! Awesomegf()
-    " Double-expand because the inner one gets the path-like string under the 
+    " Double-expand because the inner one gets the path-like string under the
     " cursor and the outer one expands shell symbols like `~`
     let possible_filename = expand(expand('<cfile>'))
 
@@ -485,14 +481,14 @@ function! Awesomegf()
         return
     endif
 
-    " This is the built-in method. If there is a string under the cursor that 
+    " This is the built-in method. If there is a string under the cursor that
     " resembles a file and it can be opened directly with `e`, just do it.
     if filereadable(possible_filename)
         exec "e " . expand('<cfile>')
     elseif filereadable(strpart(possible_filename, 1))
-        " If we couldn't open it as-is, try hacking off the first character. If 
-        " that first character was a leading forward slash and our working 
-        " directory is the root, everything will work. I realize that this 
+        " If we couldn't open it as-is, try hacking off the first character. If
+        " that first character was a leading forward slash and our working
+        " directory is the root, everything will work. I realize that this
         " solution is dependent on my environment and workflow.
         exec "e " . strpart(possible_filename, 1)
     endif
@@ -558,6 +554,7 @@ endfunction
 
 " vim: set et ts=4 sw=4 :
 "}}}
+
 "{{{Mappings
 
 ""folding toggle
@@ -592,8 +589,8 @@ inoremap <leader>w <C-c>:w<cr>
 " that don't automatically wrap (like wrapping docblock comments).
 
 " Change colors (mnemonic: change your colors {light|dark}).
-nnoremap cycl :colorscheme Tomorrow<CR>   
-nnoremap cycd :colorscheme xoria256<CR>    
+nnoremap cycl :colorscheme Tomorrow<CR>
+nnoremap cycd :colorscheme xoria256<CR>
 
 " Pass the selected lines through tidy with ,x.
 vnoremap <Leader>x :<Home>silent <End>!tidy -q -i --show-errors 0<CR>
@@ -722,28 +719,30 @@ vnoremap <Leader>a :EasyAlign<CR>
 
 " vim: set et ts=4 sw=4 :
 "}}}
+
 "{{{Filetypes
 
-" --------------------------- Filetype overrides ---------------------------
-autocmd BufRead,BufNewFile */source/*.html set filetype=liquid
-autocmd BufRead,BufNewFile *.txt set filetype=text
-autocmd BufRead,BufNewFile *.wiki set filetype=wiki
-autocmd BufRead,BufNewFile */_posts/* set filetype=octopress
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufRead,BufNewFile *.markdown set filetype=markdown
-
-" ----------------- Version-specific filetype preferences -----------------
-if v:version > 702
-    autocmd FileType php set colorcolumn=120
-    autocmd FileType markdown set colorcolumn=80
-endif
-
+""" --------------------------- Filetype overrides ---------------------------
+""autocmd BufRead,BufNewFile */source/*.html set filetype=liquid
+""autocmd BufRead,BufNewFile *.txt set filetype=text
+""autocmd BufRead,BufNewFile *.wiki set filetype=wiki
+""autocmd BufRead,BufNewFile */_posts/* set filetype=octopress
+""autocmd BufRead,BufNewFile *.md set filetype=markdown
+""autocmd BufRead,BufNewFile *.markdown set filetype=markdown
+""
+""" ----------------- Version-specific filetype preferences -----------------
+""if v:version > 702
+""    autocmd FileType php set colorcolumn=120
+""    autocmd FileType markdown set colorcolumn=80
+""endif
+""
 " vim: set et ts=4 sw=4 :
 "}}}
+
 "{{{Lightline
 
 let g:lightline = {
-      \ 'colorscheme': 'powerline',
+      \ 'colorscheme': 'jellybeans',
       \ 'mode_map': { 'c': 'NORMAL' },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
@@ -796,108 +795,114 @@ endfunction
 
 " vim: set et ts=4 sw=4 :
 "}}}
+
 "{{{Environments
+set backupdir=~/tmp/vim_backups//
+set dir=~/tmp/vim_backups//
+set undodir=~/tmp/vim_undo//
+
 
 " set backupdir=~/.vim/tmp,.
 " set directory=~/.vim/tmp,.
 " set undodir=~/tmp/vim_undo
 ""____Environment-specific locations____
 
-if has("gui_running")
-    " All GUI settings -------------------------------------------------------
-
-    " No menu nor toolbar.
-    set guioptions-=m
-    set guioptions-=T
-
-    " Always show the tab bar.
-    set showtabline=2
-
-    if has("gui_win32")
-        " Windows Settings ---------------------------------------------------
-        if !filewritable("c:\\vim_backups")
-            call mkdir("c:\\vim_backups")
-        endif
-        set backupdir=c:\\vim_backups
-        set dir=c:\\vim_backups
-        let g:Reference_File_Location='u:\reference'
-        let g:Todo_List_Location='u:\TODO.txt'
-
-        nmap <leader>o :exec "silent !start explorer.exe ".expand("%:h")<CR>
-
-        if v:version > 702
-            " Only for versions above 7.2 where these features are available.
-            if !filewritable("c:\\vim_undo")
-                call mkdir("c:\\vim_undo")
-            endif
-            set undodir=c:\\vim_undo
-        endif
-    elseif has("gui_macvim")
-        " Mac GUI Settings ---------------------------------------------------
-        set guifont=Source\ Code\ Pro\ for\ Powerline:h13
-
-        if !filewritable("/tmp/vim_backups")
-            call mkdir("/tmp/vim_backups")
-        endif
-        set backupdir=/tmp/vim_backups
-        set dir=/tmp/vim_backups
-
-        if v:version > 702
-            " Only for versions above 7.2 where these features are available.
-            if !filewritable("/tmp/vim_undo")
-                call mkdir("/tmp/vim_undo")
-            endif
-            set undodir=~/tmp/vim_undo
-        endif
-    elseif has("gui_gtk")
-        " Linux GUI (GTK+) Settings ------------------------------------------
-        if !filewritable("/tmp/vim_backups")
-            call mkdir("/tmp/vim_backups")
-        endif
-        set backupdir=/tmp/vim_backups
-        set dir=/tmp/vim_backups
-
-        if v:version > 702
-            " Only for versions above 7.2 where these features are available.
-            if !filewritable("/tmp/vim_undo")
-                call mkdir("/tmp/vim_undo")
-            endif
-            set undodir=~/tmp/vim_undo
-        endif
-
-        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
-        let g:syntastic_error_symbol='✗'
-        let g:syntastic_warning_symbol='⚠'
-
-        let g:Reference_File_Location='~/u/reference'
-        let g:Todo_List_Location='~/Dropbox/TODO.txt'
-    else
-        " All other GUIs Settings --------------------------------------------
-        set guifont=DejaVu\ Sans\ Mono:h10
-        "set guifont=Consolas:h11
-        "set guifont=Tamsyn8x15
-        "set guifont=Inconsolata-dz:h9
-    endif
-else
-    " All console-specific settings. -----------------------------------------
-"    if !filewritable("~/tmp/vim_backups")
-"        call mkdir("~/tmp/vim_backups")
-"    endif
-    set backupdir=~/tmp/vim_backups//
-    set dir=~/tmp/vim_backups//
-    let g:Reference_File_Location='~/u/reference'
-    let g:Todo_List_Location='~/gdrive/org/TODO.txt'
-
-    if v:version > 702
-        " Only for versions above 7.2 where these features are available.
-"        if !filewritable("~/tmp/vim_undo")
-"            call mkdir("~/tmp/vim_undo")
+"if has("gui_running")
+"    " All GUI settings -------------------------------------------------------
+"
+"    " No menu nor toolbar.
+"    set guioptions-=m
+"    set guioptions-=T
+"
+"    " Always show the tab bar.
+"    set showtabline=2
+"
+"    if has("gui_win32")
+"        " Windows Settings ---------------------------------------------------
+"        if !filewritable("c:\\vim_backups")
+"            call mkdir("c:\\vim_backups")
 "        endif
-        set undodir=~/tmp/vim_undo//
-    endif
-endif
+"        set backupdir=c:\\vim_backups
+"        set dir=c:\\vim_backups
+"        let g:Reference_File_Location='u:\reference'
+"        let g:Todo_List_Location='u:\TODO.txt'
+"
+"        nmap <leader>o :exec "silent !start explorer.exe ".expand("%:h")<CR>
+"
+"        if v:version > 702
+"            " Only for versions above 7.2 where these features are available.
+"            if !filewritable("c:\\vim_undo")
+"                call mkdir("c:\\vim_undo")
+"            endif
+"            set undodir=c:\\vim_undo
+"        endif
+"    elseif has("gui_macvim")
+"        " Mac GUI Settings ---------------------------------------------------
+"        set guifont=Source\ Code\ Pro\ for\ Powerline:h13
+"
+"        if !filewritable("/tmp/vim_backups")
+"            call mkdir("/tmp/vim_backups")
+"        endif
+"        set backupdir=/tmp/vim_backups
+"        set dir=/tmp/vim_backups
+"
+"        if v:version > 702
+"            " Only for versions above 7.2 where these features are available.
+"            if !filewritable("/tmp/vim_undo")
+"                call mkdir("/tmp/vim_undo")
+"            endif
+"            set undodir=~/tmp/vim_undo
+"        endif
+"    elseif has("gui_gtk")
+"        " Linux GUI (GTK+) Settings ------------------------------------------
+"        if !filewritable("/tmp/vim_backups")
+"            call mkdir("/tmp/vim_backups")
+"        endif
+"        set backupdir=/tmp/vim_backups
+"        set dir=/tmp/vim_backups
+"
+"        if v:version > 702
+"            " Only for versions above 7.2 where these features are available.
+"            if !filewritable("/tmp/vim_undo")
+"                call mkdir("/tmp/vim_undo")
+"            endif
+"            set undodir=~/tmp/vim_undo
+"        endif
+"
+"        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
+"        let g:syntastic_error_symbol='✗'
+"        let g:syntastic_warning_symbol='⚠'
+"
+"        let g:Reference_File_Location='~/u/reference'
+"        let g:Todo_List_Location='~/Dropbox/TODO.txt'
+"    else
+"        " All other GUIs Settings --------------------------------------------
+"        set guifont=DejaVu\ Sans\ Mono:h10
+"        "set guifont=Consolas:h11
+"        "set guifont=Tamsyn8x15
+"        "set guifont=Inconsolata-dz:h9
+"    endif
+"else
+"    " All console-specific settings. -----------------------------------------
+""    if !filewritable("~/tmp/vim_backups")
+""        call mkdir("~/tmp/vim_backups")
+""    endif
+"    set backupdir=~/tmp/vim_backups//
+"    set dir=~/tmp/vim_backups//
+"    let g:Reference_File_Location='~/u/reference'
+"    let g:Todo_List_Location='~/gdrive/org/TODO.txt'
+"
+"    if v:version > 702
+"        " Only for versions above 7.2 where these features are available.
+""        if !filewritable("~/tmp/vim_undo")
+""            call mkdir("~/tmp/vim_undo")
+""        endif
+"        set undodir=~/tmp/vim_undo//
+"    endif
+"endif
 
 "}}}
+
 "{{{Statusline
 
 " This is my previous statusline:
@@ -956,129 +961,129 @@ set statusline+=\ %P							"percent through file
 set laststatus=2
 
 "recalculate the trailing whitespace warning when idle, and after saving
-autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
-
-"return '[\s]' if trailing white space is detected
-"return '' otherwise
-function! StatuslineTrailingSpaceWarning()
-	if !exists("b:statusline_trailing_space_warning")
-
-		if !&modifiable
-			let b:statusline_trailing_space_warning = ''
-			return b:statusline_trailing_space_warning
-		endif
-
-		if search('\s\+$', 'nw') != 0
-			let b:statusline_trailing_space_warning = '[\s]'
-		else
-			let b:statusline_trailing_space_warning = ''
-		endif
-	endif
-	return b:statusline_trailing_space_warning
-endfunction
-
-
-"return the syntax highlight group under the cursor ''
-function! StatuslineCurrentHighlight()
-	let name = synIDattr(synID(line('.'),col('.'),1),'name')
-	if name == ''
-		return ''
-	else
-		return '[' . name . ']'
-	endif
-endfunction
-
-"recalculate the tab warning flag when idle and after writing
-autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning
-
-"return '[&et]' if &et is set wrong
-"return '[mixed-indenting]' if spaces and tabs are used to indent
-"return an empty string if everything is fine
-function! StatuslineTabWarning()
-	if !exists("b:statusline_tab_warning")
-		let b:statusline_tab_warning = ''
-
-		if !&modifiable
-			return b:statusline_tab_warning
-		endif
-
-		let tabs = search('^\t', 'nw') != 0
-
-		"find spaces that arent used as alignment in the first indent column
-		let spaces = search('^ \{' . &ts . ',}[^\t]', 'nw') != 0
-
-		if tabs && spaces
-			let b:statusline_tab_warning =  '[mixed-indenting]'
-		elseif (spaces && !&et) || (tabs && &et)
-			let b:statusline_tab_warning = '[&et]'
-		endif
-	endif
-	return b:statusline_tab_warning
-endfunction
-
-"recalculate the long line warning when idle and after saving
-autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
-
-"return a warning for "long lines" where "long" is either &textwidth or 80 (if
-"no &textwidth is set)
+"autocmd cursorhold,bufwritepost * unlet! b:statusline_trailing_space_warning
 "
-"return '' if no long lines
-"return '[#x,my,$z] if long lines are found, were x is the number of long
-"lines, y is the median length of the long lines and z is the length of the
-"longest line
-function! StatuslineLongLineWarning()
-	if !exists("b:statusline_long_line_warning")
-
-		if !&modifiable
-			let b:statusline_long_line_warning = ''
-			return b:statusline_long_line_warning
-		endif
-
-		let long_line_lens = s:LongLines()
-
-		if len(long_line_lens) > 0
-			let b:statusline_long_line_warning = "[" .
-						\ '#' . len(long_line_lens) . "," .
-						\ 'm' . s:Median(long_line_lens) . "," .
-						\ '$' . max(long_line_lens) . "]"
-		else
-			let b:statusline_long_line_warning = ""
-		endif
-	endif
-	return b:statusline_long_line_warning
-endfunction
-
-"return a list containing the lengths of the long lines in this buffer
-function! s:LongLines()
-	let threshold = (&tw ? &tw : 80)
-	let spaces = repeat(" ", &ts)
-
-	let long_line_lens = []
-
-	let i = 1
-	while i <= line("$")
-		let len = strlen(substitute(getline(i), '\t', spaces, 'g'))
-		if len > threshold
-			call add(long_line_lens, len)
-		endif
-		let i += 1
-	endwhile
-
-	return long_line_lens
-endfunction
-
-"find the median of the given array of numbers
-function! s:Median(nums)
-	let nums = sort(a:nums)
-	let l = len(nums)
-
-	if l % 2 == 1
-		let i = (l-1) / 2
-		return nums[i]
-	else
-		return (nums[l/2] + nums[(l/2)-1]) / 2
-	endif
-endfunction
+""return '[\s]' if trailing white space is detected
+""return '' otherwise
+"function! StatuslineTrailingSpaceWarning()
+"	if !exists("b:statusline_trailing_space_warning")
+"
+"		if !&modifiable
+"			let b:statusline_trailing_space_warning = ''
+"			return b:statusline_trailing_space_warning
+"		endif
+"
+"		if search('\s\+$', 'nw') != 0
+"			let b:statusline_trailing_space_warning = '[\s]'
+"		else
+"			let b:statusline_trailing_space_warning = ''
+"		endif
+"	endif
+"	return b:statusline_trailing_space_warning
+"endfunction
+"
+"
+""return the syntax highlight group under the cursor ''
+"function! StatuslineCurrentHighlight()
+"	let name = synIDattr(synID(line('.'),col('.'),1),'name')
+"	if name == ''
+"		return ''
+"	else
+"		return '[' . name . ']'
+"	endif
+"endfunction
+"
+""recalculate the tab warning flag when idle and after writing
+"autocmd cursorhold,bufwritepost * unlet! b:statusline_tab_warning
+"
+""return '[&et]' if &et is set wrong
+""return '[mixed-indenting]' if spaces and tabs are used to indent
+""return an empty string if everything is fine
+"function! StatuslineTabWarning()
+"	if !exists("b:statusline_tab_warning")
+"		let b:statusline_tab_warning = ''
+"
+"		if !&modifiable
+"			return b:statusline_tab_warning
+"		endif
+"
+"		let tabs = search('^\t', 'nw') != 0
+"
+"		"find spaces that arent used as alignment in the first indent column
+"		let spaces = search('^ \{' . &ts . ',}[^\t]', 'nw') != 0
+"
+"		if tabs && spaces
+"			let b:statusline_tab_warning =  '[mixed-indenting]'
+"		elseif (spaces && !&et) || (tabs && &et)
+"			let b:statusline_tab_warning = '[&et]'
+"		endif
+"	endif
+"	return b:statusline_tab_warning
+"endfunction
+"
+""recalculate the long line warning when idle and after saving
+"autocmd cursorhold,bufwritepost * unlet! b:statusline_long_line_warning
+"
+""return a warning for "long lines" where "long" is either &textwidth or 80 (if
+""no &textwidth is set)
+""
+""return '' if no long lines
+""return '[#x,my,$z] if long lines are found, were x is the number of long
+""lines, y is the median length of the long lines and z is the length of the
+""longest line
+"function! StatuslineLongLineWarning()
+"	if !exists("b:statusline_long_line_warning")
+"
+"		if !&modifiable
+"			let b:statusline_long_line_warning = ''
+"			return b:statusline_long_line_warning
+"		endif
+"
+"		let long_line_lens = s:LongLines()
+"
+"		if len(long_line_lens) > 0
+"			let b:statusline_long_line_warning = "[" .
+"						\ '#' . len(long_line_lens) . "," .
+"						\ 'm' . s:Median(long_line_lens) . "," .
+"						\ '$' . max(long_line_lens) . "]"
+"		else
+"			let b:statusline_long_line_warning = ""
+"		endif
+"	endif
+"	return b:statusline_long_line_warning
+"endfunction
+"
+""return a list containing the lengths of the long lines in this buffer
+"function! s:LongLines()
+"	let threshold = (&tw ? &tw : 80)
+"	let spaces = repeat(" ", &ts)
+"
+"	let long_line_lens = []
+"
+"	let i = 1
+"	while i <= line("$")
+"		let len = strlen(substitute(getline(i), '\t', spaces, 'g'))
+"		if len > threshold
+"			call add(long_line_lens, len)
+"		endif
+"		let i += 1
+"	endwhile
+"
+"	return long_line_lens
+"endfunction
+"
+""find the median of the given array of numbers
+"function! s:Median(nums)
+"	let nums = sort(a:nums)
+"	let l = len(nums)
+"
+"	if l % 2 == 1
+"		let i = (l-1) / 2
+"		return nums[i]
+"	else
+"		return (nums[l/2] + nums[(l/2)-1]) / 2
+"	endif
+"endfunction
 "}}}
 
 
