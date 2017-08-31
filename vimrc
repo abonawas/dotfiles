@@ -154,7 +154,7 @@ set clipboard=unnamed
 " endif
 
 " Set my colorscheme.
-colorscheme gruvbox
+colorscheme jellybeans
 "
 "if &term =~ '256color'
 "    " disable background color erase
@@ -1088,7 +1088,7 @@ set laststatus=2
 
 
 
-hi Normal ctermbg=none
-highlight NonText ctermbg=none
+"hi Normal ctermbg=none
+"highlight NonText ctermbg=none
 
 " vim: set et ts=4 sw=4 :
