@@ -1,10 +1,8 @@
 
-vim/.netrwhist
-vim/bundle/**
-!vim/bundle/README.md
+/vim/.netrwhist
+/vim/bundle/**
 
-nvim/.netrwhist
-nvim/plugged/**
-!nvim/plugged/README.md
+config/nvim/.netrwhist
+config/nvim/plugged/**
 
 
