@@ -386,8 +386,8 @@ let g:ale_linters = {
 \   'python'    : ['flake8']
 \}
 
-nmap ]q :ALENextWrap<cr>
-nmap [q :ALEPreviousWrap<cr>
+nnoremap ]q :ALENextWrap<cr>
+nnoremap [q :ALEPreviousWrap<cr>
 
 " airline options
 let g:airline_powerline_fonts=1
