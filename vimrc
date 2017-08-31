@@ -91,6 +91,8 @@ set encoding=utf-8
 " Now enable syntax highlighting and filetype stuff.
 syntax on
 set lazyredraw
+set synmaxcol=128
+syntax sync minlines=256
 
 " Enable filetype handling.
 filetype plugin indent on
