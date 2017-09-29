@@ -53,20 +53,19 @@ hi Folded       guifg=#708090   guibg=#c0d0e0
 hi Folded       guifg=#708090   guibg=#c0d0e0
 hi FoldColumn   guifg=#708090   guibg=#c0d0e0
 
-hi Constant     guifg=black		gui=bold
+hi Constant     guifg=black
 hi Number       guifg=black
 hi Float        guifg=black
 hi Boolean      guifg=#0048ff
 hi String       guifg=#4070a0   gui=none
 
-hi Statement    guifg=#0048ff   gui=bold
+hi Statement    guifg=#0048ff   gui=none
 hi Type         guifg=#0048ff   gui=none
 hi Structure    guifg=#0048ff   gui=none
-hi Identifier   guifg=#0048ff   gui=bold
+hi Identifier   guifg=#0048ff   gui=none
 hi Function     guifg=#0048ff   gui=none
 hi Repeat       guifg=#0048ff   gui=bold
 hi Conditional  guifg=#0048ff   gui=bold
-hi Keyword		guifg=black		gui=bold
 hi Operator     guifg=black
 
 hi PreProc      guifg=#1060a0   gui=none
@@ -83,3 +82,5 @@ hi DiffChange   guifg=NONE      guibg=#e0e0e0   gui=bold
 hi DiffText     guifg=NONE      guibg=#f0c8c8   gui=bold
 hi DiffAdd      guifg=NONE      guibg=#c0e0d0   gui=bold
 hi DiffDelete   guifg=NONE      guibg=#f0e0b0   gui=bold
+
+

@@ -1,6 +1,7 @@
 
-/vim/.netrwhist
-/vim/bundle/**
+vim/.netrwhist
+vim/bundle/**
+vim/color
 
 config/nvim/.netrwhist
 config/nvim/plugged/**
