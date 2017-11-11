@@ -260,12 +260,12 @@ let g:UltiSnipsJumpBackwardTrigger="kk"
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
 "let g:syntastic_php_checkers = ['php', 'phpcs']
-let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_checkers=['pylint']
 "let g:syntastic_python_flake8_args='--ignore=E501,E225'
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
-let g:syntastic_quiet_messages = {
-    \ "level":  "warnings"}
+"let g:syntastic_quiet_messages = {
+"    \ "level":  "warnings"}
 
 let g:syntastic_php_phpcs_errorformat =
     \ '%-GFile\,Line\,Column\,Type\,Message\,Source\,Severity,'.
