@@ -158,7 +158,7 @@ set tags=./tags;/           " Search for a file called tags. If it is not
 "set cryptmethod=blowfish    " Use the much stronger and more secure Blowfish
                             " algorithm for encrypting files.
 
-let g:python_host_prog = '/usr/local/bin/python2'
+let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 " Save only the given options when using 'mksession'.
@@ -215,6 +215,10 @@ endif
 
 "{{{ Plugin Settings
 "
+"
+"autocmd Filetype tex setl updatetime=200
+"let g:livepreview_previewer = 'open -a Skim'
+"
 " ############################################################################
 " #          Configure any plugin-specific settings and mappings.            #
 " ############################################################################
@@ -228,8 +232,8 @@ let g:ale_sign_column_always = 1
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '⚠'
 
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
 
 " highlight clear ALEErrorSign
 " highlight clear ALEWarningSign
@@ -269,8 +273,7 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<leader><leader>"
 let g:jedi#rename_command = "<leader>r"
-"let g:jedi#show_call_signatures = "2"
-""autocmd FileType python setlocal completeopt-=preview
+
 
 " --------------------------------- TagBar -----------------------------------
 let g:tagbar_autoclose = 1
@@ -385,7 +388,7 @@ vnoremap ˚ :m '<-2<cr>gv=gv
 nnoremap <leader>i :set cursorline!<cr>
 
 ""quickly execute last shell command
-nnoremap <Leader>x :VtrSendCommandToRunner<CR>
+"""nnoremap <Leader>x :VtrSendCommandToRunner<CR>
 
 " Allows incsearch highlighting for range commands.
 cnoremap ~~c <CR>:t''<CR>
@@ -416,7 +419,7 @@ nnoremap cycl :colorscheme gruvbox<CR>
 nnoremap cycd :colorscheme xoria256<CR>
 
 " Pass the selected lines through tidy with ,x.
-vnoremap <Leader>x :<Home>silent <End>!tidy -q -i --show-errors 0<CR>
+"vnoremap <Leader>x :<Home>silent <End>!tidy -q -i --show-errors 0<CR>
 
 " Try to ween myself off of pressing zero ALL THE TIME.
 "" "nnoremap 0 :echoe "Stop doing that!"<CR>
@@ -504,7 +507,9 @@ nmap <silent> <leader>e :FZF<cr>
 " -------------------------------- Dispatch ----------------------------------
 
 autocmd FileType python let b:dispatch = 'python3 %'
-nnoremap <F5> :Dispatch<CR>
+autocmd FileType tex let b:dispatch = 'pdflatex -synctex=1 -interaction nonstopmode %'
+nnoremap <F5> :w \| :Dispatch<CR>
+nnoremap <leader>x :w \| :Dispatch<CR>
 
 " --------------------------- Visual Mode Mappings ----------------------------
 " In visual mode, D will Duplicate the selected lines after the visual block.
