@@ -1,11 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/Ecohydro'
-let g:netrw_dirhist_2='/Users/Ecohydro/.config'
-let g:netrw_dirhist_3='/Users/Ecohydro/.config/nvim'
-let g:netrw_dirhist_4='/Users/Ecohydro/.config/nvim/plugin'
-let g:netrw_dirhist_5='/Users/Ecohydro/.config/nvim'
-let g:netrw_dirhist_6='/Users/Ecohydro/.config/nvim/autoload'
-let g:netrw_dirhist_7='/Users/Ecohydro/gdrive/code/python/web_dev/react/chords'
-let g:netrw_dirhist_8='/Users/Ecohydro/gdrive/code/python/web_dev/react/chords/src'
-let g:netrw_dirhist_9='/Users/ammory999/dotfiles/config/nvim/plugged'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/Users/Ecohydro/dotfiles/vim/ftplugin'

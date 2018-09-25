@@ -22,66 +22,100 @@ Plugin 'gmarik/vundle'
 
 " Lightline is a nice alternative to Powerline.
 Plugin 'itchyny/lightline.vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'neovimhaskell/haskell-vim'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Twinside/vim-hoogle'
+Plugin 'Shougo/echodoc.vim'
+let g:echodoc#enable_at_startup = 1
 
 " A whole collection of language support files.
 " Plugin 'sheerun/vim-polyglot'
-" Plugin 'StanAngeloff/php.vim'
-
-" My own stuff.
-"Plugin 'aaronbieber/vim-quicktask'
-" Plugin 'aaronbieber/vim-vault'
+" let g:polyglot_disabled = ['latex']
 
 " Nyan cat is critical.
-" Plugin 'koron/nyancat-vim'
+Plugin 'koron/nyancat-vim'
 
 " Tim Pope FTW.
 Plugin 'tpope/vim-fugitive'
+Plugin 'jreybert/vimagit'
+
+Plugin 'tpope/vim-dispatch'
+" Plugin 'radenling/vim-dispatch-neovim'
+" Plugin 'skywind3000/asyncrun.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-obsession'
-Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-commentary'
+
+" Plugin 'kassio/neoterm'
+" Plugin 'janko-m/vim-test'
 
 " Scrooloose FTW.
-Plugin 'scrooloose/nerdtree'
-"Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/nerdtree'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'zchee/deoplete-jedi'
 Plugin 'w0rp/ale'
 
+Plugin 'zchee/deoplete-clang'
+let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/6.0.1/lib/libclang.dylib'
+Plugin 'Shougo/neoinclude.vim'
+
+
 ") Helpers.
-Plugin 'jeetsukumaran/vim-gazetteer'
 " Plugin 'Keithbsmiley/investigate.vim'
-Plugin 'SirVer/ultisnips'
+" let g:investigate_use_dash=1
+
+" Plugin 'SirVer/ultisnips'
+" Plugin 'Shougo/neosnippet.vim'
+" Plugin 'Shougo/neosnippet-snippets'
+" Plugin 'honza/vim-snippets'
+
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'christoomey/vim-tmux-runner'
-Plugin 'ervandew/supertab'
+" Plugin 'ervandew/supertab'
 Plugin 'gcmt/wildfire.vim'
-Plugin 'honza/vim-snippets'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'kien/ctrlp.vim'
+
 Plugin 'majutsushi/tagbar'
-"Plugin 'vim-php/tagbar-phpctags.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'rking/ag.vim'
-Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'terryma/vim-multiple-cursors'
 
 
 Plugin 'davidhalter/jedi-vim'
 Plugin 'drewtempelmeyer/palenight.vim'
 "Plugin 'nvie/vim-flake8'
 Plugin 'morhetz/gruvbox'
-" This plug-in is huge and causes errors during BundleInstall, but it's the
-" de-facto standard for LaTeX so I'm leaving it here as a reminder for the
-" day I want to edit LaTeX, which is not uncommon for me at all.
-" Bundle 'vim-scripts/LaTeX-Suite-aka-Vim-LaTeX'
+" Plugin 'honza/writer.vim'
+" Plugin 'beloglazov/vim-online-thesaurus'
+Plugin 'junegunn/goyo.vim'
+" Plugin 'amix/vim-zenroom2'
+" Plugin 'chrisbra/csv.vim'
+" Plugin 'ntpeters/vim-better-whitespace'
+" Plugin 'qpkorr/vim-bufkill'
+
+" Markdown Plugins
+" Plugin 'tpope/vim-markdown'
+" Plugin 'iamcco/markdown-preview.vim'
+" Plugin 'iamcco/mathjax-support-for-mkdp'
+" Plugin 'godlygeek/tabular'
+" Plugin 'plasticboy/vim-markdown'
+
+" Plugin 'vim-pandoc/vim-pandoc'
+" Plugin 'vim-pandoc/vim-pandoc-syntax'
+" Plugin 'vim-pandoc/vim-rmarkdown'
+
+Plugin 'lervag/vimtex'
+let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_view_method = 'skim'
+
+
 
 call vundle#end()
 
@@ -100,14 +134,15 @@ if &termencoding == ""
 endif
 set encoding=utf-8
 
+" Enable filetype handling.
+filetype plugin indent on
+
 " Now enable syntax highlighting and filetype stuff.
 syntax on
 set lazyredraw
 set synmaxcol=128
 syntax sync minlines=256
 
-" Enable filetype handling.
-filetype plugin indent on
 
 "}}}
 
@@ -135,6 +170,7 @@ set shiftwidth=4            " That means I like to indent by that amount as
                             " well.
 set showcmd                 " Show commands as I am typing them.
 set ts=4                    " The best tab stop is 4.
+set expandtab
 set whichwrap=h,l,~,[,]     " These keys will move the cursor over line
                             " boundaries ('wrap').
 set wildmenu                " Tab completion for files with horizontal list
@@ -158,8 +194,9 @@ set tags=./tags;/           " Search for a file called tags. If it is not
 "set cryptmethod=blowfish    " Use the much stronger and more secure Blowfish
                             " algorithm for encrypting files.
 
-let g:python_host_prog = '/usr/local/bin/python'
+" let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
+" let g:python3_host_prog = '~/anaconda/bin/python3'
 
 " Save only the given options when using 'mksession'.
 set sessionoptions=blank,buffers,curdir,folds,help,tabpages,unix
@@ -213,6 +250,26 @@ endif
 
 "}}}
 
+"{{{ Haskell
+
+autocmd FileType haskell setl makeprg=ghc\ --make\ %
+autocmd FileType haskell nnoremap <leader>c :w \| Make<cr>
+autocmd FileType haskell nnoremap <leader>x :Dispatch ./%:r<cr>
+" autocmd FileType haskell setl errorformat=%E%f:%l:%c:,%C\ %.%m,%Z,%f:%l:%c:%m
+
+let $PATH .= (":" . $HOME . "/.cabal/bin" . ":" . $HOME . "/.local/bin")
+let g:necoghc_enable_detailed_browse = 1
+
+
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+"}}}
+
 "{{{ Plugin Settings
 "
 "
@@ -241,16 +298,42 @@ let g:ale_set_quickfix = 0
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'typescript': ['tslint', 'tsserver'],
-\   'python'    : ['pylint']
+\   'python'    : ['pylint'],
+\   'haskell'   : ['ghc-mod']
 \}
 
 
 " --------------------------- Ultisnips ---------------------------
 
-let g:UltiSnipsSnippetDirectories = ["UltiSnips"]
-let g:UltiSnipsDontReverseSearchPath = "0"
-let g:UltiSnipsJumpForwardTrigger="jj"
-let g:UltiSnipsJumpBackwardTrigger="kk"
+" let g:UltiSnipsSnippetDirectories = ["UltiSnips"]
+" let g:UltiSnipsDontReverseSearchPath = "0"
+" let g:UltiSnipsJumpForwardTrigger="jj"
+" let g:UltiSnipsJumpBackwardTrigger="kk"
+
+" Tell Neosnippet about the other snippets
+" let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+" if has('conceal')
+"   set conceallevel=2 concealcursor=niv
+" endif
+
+" let g:tex_conceal = ""
 
 " ---------------------------Deoplete ----------------------------
 
@@ -258,8 +341,14 @@ let g:deoplete#enable_at_startup = 1
 "set completeopt-=preview
 autocmd CompleteDone * pclose!
 
-let g:deoplete#sources#jedi#python_path = "/usr/local/bin/python3"
+let g:deoplete#sources#jedi#python_path = "python3"
 let g:deoplete#sources#jedi#show_docstring = 1
+
+if !exists('g:deoplete#omni#input_patterns')
+  let g:deoplete#omni#input_patterns = {}
+endif
+let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
+
 
 " ----------------------------- Jedi --------------------------------
 
@@ -285,63 +374,36 @@ let NERDTreeDirArrows=1
 let NERDTreeQuitOnOpen=0
 
 " --------------------------------- CtrlP ------------------------------------
-let g:ctrlp_open_new_file = 'h'
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_extensions = ['funky', 'gazetteer']
-let g:ctrlp_user_command = "find %s -type f " .
-                         \ "-not -wholename '*.svn*' " .
-                         \ "-not -wholename '*.git*' " .
-                         \ "-not -iname '*.jpg' " .
-                         \ "-not -iname '*.gif' " .
-                         \ "-not -iname '*.pdf' " .
-                         \ "-not -iname '*.png' " .
-                         \ "| while read filename; do " .
-                         \ "echo $#filename $filename; ".
-                         \ "done | sort -n | awk '{print $2}'"
-let g:ctrlp_custom_ignore = {
-    \ 'dir': '\.git$|\.svn$',
-    \ 'file': '\.so$|\.dat$|\.DS_Store$|Thumbs.db|\.pdf$|\.jpg$|\.png$|\.ttf$|\.gif$'
+" let g:ctrlp_open_new_file = 'h'
+" let g:ctrlp_clear_cache_on_exit = 1
+" let g:ctrlp_extensions = ['funky', 'gazetteer']
+" let g:ctrlp_user_command = "find %s -type f " .
+"                          \ "-not -wholename '*.svn*' " .
+"                          \ "-not -wholename '*.git*' " .
+"                          \ "-not -iname '*.jpg' " .
+"                          \ "-not -iname '*.gif' " .
+"                          \ "-not -iname '*.pdf' " .
+"                          \ "-not -iname '*.png' " .
+"                          \ "| while read filename; do " .
+"                          \ "echo $#filename $filename; ".
+"                          \ "done | sort -n | awk '{print $2}'"
+" let g:ctrlp_custom_ignore = {
+"     \ 'dir': '\.git$|\.svn$',
+"     \ 'file': '\.so$|\.dat$|\.DS_Store$|Thumbs.db|\.pdf$|\.jpg$|\.png$|\.ttf$|\.gif$'
 \ }
 
-" ------------------------------- Quicktask ----------------------------------
-let g:quicktask_autosave = 1
-let g:quicktask_snip_path = '~/gdrive/org'
-let g:quicktask_snip_win_maximize = 1
-
-" -------------------------------- Syntastic ---------------------------------
-"let g:syntastic_always_populate_loc_list=1
-"let g:syntastic_auto_loc_list=1
-""let g:syntastic_php_checkers = ['php', 'phpcs']
-"let g:syntastic_python_checkers=['pylint']
-""let g:syntastic_python_flake8_args='--ignore=E501,E225'
-"let g:syntastic_error_symbol='✗'
-"let g:syntastic_warning_symbol='⚠'
-""let g:syntastic_quiet_messages = {
-""    \ "level":  "warnings"}
-"
-"let g:syntastic_php_phpcs_errorformat =
-"    \ '%-GFile\,Line\,Column\,Type\,Message\,Source\,Severity,'.
-"    \ '"%f"\,%l\,%c\,%t%*[a-zA-Z]\,"%m"\,%*[a-zA-Z0-9_.-\*]\,%*[0-9]'
-
-" ------------------------------- LaTeX Suite -------------------------------
-let g:Tex_DefaultTargetFormat = 'pdf'
-
-" -------------------------------- Committed --------------------------------
-let g:committed_symbols_fancy = 1
-
-" --------------------------------- Signify ---------------------------------
-let g:signify_disable_by_default = 1
 
 " ------------------------------- Investigate -------------------------------
 " I'm using devdocs.io because searches on php.net never work. Thanks, php.net.
 let g:investigate_url_for_php="http://devdocs.io/#q=^s"
 
 " -------------------------------- Wildfire ---------------------------------
-let g:wildfire_fuel_map = "\\"
-let g:wildfire_water_map = "<BS>"
+let g:wildfire_fuel_map = "+"
+let g:wildfire_water_map = "-"
 
 " -------------------------------- Supertab ---------------------------------
-let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 " ------------------------------- EasyMotion --------------------------------
 nmap s <Plug>(easymotion-s)
@@ -352,6 +414,51 @@ let g:EasyMotion_smartcase = 1
 "}}}
 
 "{{{Functions
+
+nnoremap <leader>s:call HighlightNearCursor()<CR>
+function HighlightNearCursor()
+  if !exists("s:highlightcursor")
+    match Todo /\k*\%#\k*/
+    let s:highlightcursor=1
+  else
+    match None
+    unlet s:highlightcursor
+  endif
+endfunction
+
+" I haven't found how to hide this function (yet)
+function! RestoreRegister()
+  if &clipboard == 'unnamed'
+    let @* = s:restore_reg
+  elseif &clipboard == 'unnamedplus'
+    let @+ = s:restore_reg
+  else
+    let @" = s:restore_reg
+  endif
+  return ''
+endfunction
+
+function! s:Repl()
+    let s:restore_reg = @"
+    return "p@=RestoreRegister()\<cr>"
+endfunction
+
+function! s:ReplSelect()
+    echo "Register to paste over selection? (<cr> => default register: ".strtrans(@").")"
+    let c = nr2char(getchar())
+    let reg = c =~ '^[0-9a-z:.%#/*+~]$'
+                \ ? '"'.c
+                \ : ''
+    return "\<C-G>".reg.s:Repl()
+endfunction
+
+" This supports "rp that permits to replace the visual selection with the
+" contents of @r
+xnoremap <silent> <expr> p <sid>Repl()
+
+" Mappings on <s-insert>, that'll also work in select mode!
+xnoremap <silent> <expr> <S-Insert> <sid>Repl()
+snoremap <silent> <expr> <S-Insert> <sid>ReplSelect()
 
 
 "Better Fold
@@ -366,6 +473,7 @@ function! NeatFoldText()
   return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
 endfunction
 set foldtext=NeatFoldText()
+
 
 """""}}}
 
@@ -399,10 +507,6 @@ cnoremap ~~d <CR>:d<CR>``
 nnoremap Q @q
 vnoremap Q :norm @q<cr>
 
-"add line above curse and below
-nnoremap <Leader>k mlO<Esc>`l
-nnoremap <Leader>j mlo<Esc>`l
-
 "quickly save and quit files
 noremap <leader>q :q<cr>
 nnoremap <leader>w :w<cr>
@@ -419,7 +523,7 @@ nnoremap cycl :colorscheme gruvbox<CR>
 nnoremap cycd :colorscheme xoria256<CR>
 
 " Pass the selected lines through tidy with ,x.
-"vnoremap <Leader>x :<Home>silent <End>!tidy -q -i --show-errors 0<CR>
+vnoremap <Leader>hh :<Home>silent <End>!tidy -q -i --show-errors 0<CR>
 
 " Try to ween myself off of pressing zero ALL THE TIME.
 "" "nnoremap 0 :echoe "Stop doing that!"<CR>
@@ -461,15 +565,14 @@ nnoremap Y y$
 
 " Create surrounding HTML tags out of the word near the cursor.
 inoremap <Leader>a <Esc>viwc<"></"><Esc>cit
-
+"
 " Indent or 'outdent' the last 'put' block with shift-tab (outdent) and tab
 " (indent). This way you can put a block and immediately move it to the
 " correct indention. This is probably my favorite mapping.
-nnoremap <S-Tab> '[<lt>']
-nnoremap <Tab> '[>']
 
-nnoremap [j <C-o>
-nnoremap ]j <C-i>
+" nnoremap <S-Tab> '[<lt>']
+" nnoremap <Tab> '[>']
+
 
 " Ctrl-E while in insert mode moves the cursor to the end of the line, a la
 " OS X and other UN*X interfaces (e.g. bash).
@@ -490,30 +593,65 @@ noremap $ g$
 nnoremap <C-w>u <C-w><Up><C-w>_
 nnoremap <C-w>d <C-w><Down><C-w>_
 
-" Why don't I do this like everyone else?
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
 
 
 
-" --------------------------------- Ctrl-P / Fzf ------------------------------------
-nnoremap <C-p> :CtrlP<CR>
-nnoremap <Leader>b :CtrlPBuffer<CR>
-nnoremap <Leader>f :CtrlPFunky<CR>
+" --------------------------------- Fzf ------------------------------------
 
-nmap <silent> <leader>e :FZF<cr>
+nnoremap <silent> <Leader>e :call fzf#run({
+\   'down': '40%',
+\   'sink': 'botright split' })<CR>
+
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+
+nnoremap <silent> ;; :call fzf#run({
+\   'source':  reverse(<sid>buflist()),
+\   'sink':    function('<sid>bufopen'),
+\   'options': '+m',
+\   'down':    len(<sid>buflist()) + 2
+\ })<CR>
+
+
+" -------------------------------- AsyncRun ----------------------------------
+
+" augroup vimrc
+"     autocmd QuickFixCmdPost * botright copen 8
+" augroup END
+" automatically open quickfix window when AsyncRun command is executed
+" set the quickfix window 6 lines height.
+" let g:asyncrun_open = 8
+
+" ring the bell to notify you job finished
+" let g:asyncrun_bell = 1
+
+" autocmd FileType perl nnoremap <leader>x :w \| :AsyncRun perl "%"<cr> 
+" " autocmd FileType python nnoremap <leader>x :w \| :AsyncRun -raw python3 %<cr> 
+" " autocmd FileType python nnoremap <leader>x :w \| :!python3 %<CR>
+" autocmd FileType c nnoremap <leader>x :AsyncRun -cwd=$(VIM_FILEDIR) -mode=4 "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+" nnoremap <silent> <leader>c :AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
+
+
 " -------------------------------- Dispatch ----------------------------------
-
+let g:dispatch_no_maps = 1
+" autocmd FileType c let b:dispatch = 'gcc % -Wall -Werror; echo "\na.out:"; ./a.out'
+" autocmd FileType c let b:dispatch = 'gcc % -Wall -Werror && ./a.out'
+" autocmd FileType tex let b:dispatch = 'pdflatex -synctex=1 -interaction nonstopmode %'
 autocmd FileType python let b:dispatch = 'python3 %'
-autocmd FileType tex let b:dispatch = 'pdflatex -synctex=1 -interaction nonstopmode %'
-nnoremap <F5> :w \| :Dispatch<CR>
-nnoremap <leader>x :w \| :Dispatch<CR>
+" autocmd FileType python nnoremap <leader>x :w \| :Dispatch<CR>
 
-" --------------------------- Visual Mode Mappings ----------------------------
-" In visual mode, D will Duplicate the selected lines after the visual block.
-vnoremap D y'>p']
+" nnoremap <F5> :w \| :Dispatch<CR>
+nnoremap <leader>x :w \| :Dispatch<CR>
+" inoremap <leader>x <C-c>:w \| :Dispatch<CR>
+
 
 " Allow * and # to work the way you would expect when some text is selected.
 " These use the z register for now until I can find the more elegant solution,
@@ -606,109 +744,10 @@ endfunction
 "}}}
 
 "{{{Environments
+
 set backupdir=~/tmp/vim_backups//
 set dir=~/tmp/vim_backups//
 set undodir=~/tmp/vim_undo//
-
-
-" set backupdir=~/.vim/tmp,.
-" set directory=~/.vim/tmp,.
-" set undodir=~/tmp/vim_undo
-""____Environment-specific locations____
-
-"if has("gui_running")
-"    " All GUI settings -------------------------------------------------------
-"
-"    " No menu nor toolbar.
-"    set guioptions-=m
-"    set guioptions-=T
-"
-"    " Always show the tab bar.
-"    set showtabline=2
-"
-"    if has("gui_win32")
-"        " Windows Settings ---------------------------------------------------
-"        if !filewritable("c:\\vim_backups")
-"            call mkdir("c:\\vim_backups")
-"        endif
-"        set backupdir=c:\\vim_backups
-"        set dir=c:\\vim_backups
-"        let g:Reference_File_Location='u:\reference'
-"        let g:Todo_List_Location='u:\TODO.txt'
-"
-"        nmap <leader>o :exec "silent !start explorer.exe ".expand("%:h")<CR>
-"
-"        if v:version > 702
-"            " Only for versions above 7.2 where these features are available.
-"            if !filewritable("c:\\vim_undo")
-"                call mkdir("c:\\vim_undo")
-"            endif
-"            set undodir=c:\\vim_undo
-"        endif
-"    elseif has("gui_macvim")
-"        " Mac GUI Settings ---------------------------------------------------
-"        set guifont=Source\ Code\ Pro\ for\ Powerline:h13
-"
-"        if !filewritable("/tmp/vim_backups")
-"            call mkdir("/tmp/vim_backups")
-"        endif
-"        set backupdir=/tmp/vim_backups
-"        set dir=/tmp/vim_backups
-"
-"        if v:version > 702
-"            " Only for versions above 7.2 where these features are available.
-"            if !filewritable("/tmp/vim_undo")
-"                call mkdir("/tmp/vim_undo")
-"            endif
-"            set undodir=~/tmp/vim_undo
-"        endif
-"    elseif has("gui_gtk")
-"        " Linux GUI (GTK+) Settings ------------------------------------------
-"        if !filewritable("/tmp/vim_backups")
-"            call mkdir("/tmp/vim_backups")
-"        endif
-"        set backupdir=/tmp/vim_backups
-"        set dir=/tmp/vim_backups
-"
-"        if v:version > 702
-"            " Only for versions above 7.2 where these features are available.
-"            if !filewritable("/tmp/vim_undo")
-"                call mkdir("/tmp/vim_undo")
-"            endif
-"            set undodir=~/tmp/vim_undo
-"        endif
-"
-"        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
-"        let g:syntastic_error_symbol='✗'
-"        let g:syntastic_warning_symbol='⚠'
-"
-"        let g:Reference_File_Location='~/u/reference'
-"        let g:Todo_List_Location='~/Dropbox/TODO.txt'
-"    else
-"        " All other GUIs Settings --------------------------------------------
-"        set guifont=DejaVu\ Sans\ Mono:h10
-"        "set guifont=Consolas:h11
-"        "set guifont=Tamsyn8x15
-"        "set guifont=Inconsolata-dz:h9
-"    endif
-"else
-"    " All console-specific settings. -----------------------------------------
-""    if !filewritable("~/tmp/vim_backups")
-""        call mkdir("~/tmp/vim_backups")
-""    endif
-"    set backupdir=~/tmp/vim_backups//
-"    set dir=~/tmp/vim_backups//
-"    let g:Reference_File_Location='~/u/reference'
-"    let g:Todo_List_Location='~/gdrive/org/TODO.txt'
-"
-"    if v:version > 702
-"        " Only for versions above 7.2 where these features are available.
-""        if !filewritable("~/tmp/vim_undo")
-""            call mkdir("~/tmp/vim_undo")
-""        endif
-"        set undodir=~/tmp/vim_undo//
-"    endif
-"endif
 
 "}}}
 
@@ -762,9 +801,14 @@ set laststatus=2
 
 
 
-"hi Normal ctermbg=none == bad : makes so no true color
-"highlight NonText ctermbg=none
 colorscheme gruvbox
+set noshowmode
+" set background=light
+" highlight Normal ctermbg=none "== bad : makes so no true color
+" highlight NonText ctermbg=none ctermfg=none
 
+" highlight clear SignColumn
+" highlight LineNr ctermfg=none ctermbg=none
+"highlight SignColumn ctermbg=none
 
 " vim: set et ts=4 sw=4 :

@@ -2,13 +2,19 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
+source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 export ZSH=~/dotfiles/oh-my-zsh
+export PATH="$PATH":~/.cabal/bin
+# export PATH=~/anaconda/bin:"$PATH"
+export EDITOR=nvim
+export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
-#alias vim="mvim -v"
-alias emacs="emacs --no-window-system"
-alias spacemacs="emacs"
-alias ana="~/anaconda/bin/python"
-alias coda="~/anaconda/bin/coda"
+alias v="nvim"
+alias zrc="nvim ~/dotfiles/zshrc"
+alias vrc="nvim ~/dotfiles/config/nvim/init.vim"
+alias trc="nvim ~/dotfiles/tmux.conf"
+
+
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -16,7 +22,7 @@ alias coda="~/anaconda/bin/coda"
 ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
- CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -57,11 +63,16 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git tmux)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+HISTSIZE=1000000
+SAVEHIST=1000000
+
+bindkey "^[P" up-line-or-beginning-search
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -89,3 +100,4 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
