@@ -59,11 +59,12 @@ Plugin 'tpope/vim-commentary'
 " Plugin 'scrooloose/nerdtree'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'zchee/deoplete-jedi'
-Plugin 'w0rp/ale'
 
 Plugin 'zchee/deoplete-clang'
-let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/6.0.1/lib/libclang.dylib'
+let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/7.0.0/lib/libclang.dylib'
 Plugin 'Shougo/neoinclude.vim'
+
+Plugin 'w0rp/ale'
 
 
 ") Helpers.
@@ -194,7 +195,7 @@ set tags=./tags;/           " Search for a file called tags. If it is not
 "set cryptmethod=blowfish    " Use the much stronger and more secure Blowfish
                             " algorithm for encrypting files.
 
-" let g:python_host_prog = '/usr/local/bin/python'
+let g:python_host_prog = '/usr/local/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 " let g:python3_host_prog = '~/anaconda/bin/python3'
 
@@ -254,10 +255,10 @@ endif
 
 autocmd FileType haskell setl makeprg=ghc\ --make\ %
 autocmd FileType haskell nnoremap <leader>c :w \| Make<cr>
-autocmd FileType haskell nnoremap <leader>x :Dispatch ./%:r<cr>
+autocmd FileType haskell nnoremap <leader>r :Dispatch ./%:r<cr>
 " autocmd FileType haskell setl errorformat=%E%f:%l:%c:,%C\ %.%m,%Z,%f:%l:%c:%m
 
-let $PATH .= (":" . $HOME . "/.cabal/bin" . ":" . $HOME . "/.local/bin")
+let $PATH .= (":" . $HOME . "/.cabal/bin" . ":" . $HOME . "/Library/Haskell/bin")
 let g:necoghc_enable_detailed_browse = 1
 
 
@@ -341,7 +342,7 @@ let g:deoplete#enable_at_startup = 1
 "set completeopt-=preview
 autocmd CompleteDone * pclose!
 
-let g:deoplete#sources#jedi#python_path = "python3"
+let g:deoplete#sources#jedi#python_path = "python"
 let g:deoplete#sources#jedi#show_docstring = 1
 
 if !exists('g:deoplete#omni#input_patterns')
@@ -353,7 +354,7 @@ let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 " ----------------------------- Jedi --------------------------------
 
 let g:jedi#force_py_version = 3
-let g:jedi#completions_enabled = 0
+let g:jedi#completions_enabled = 1
 let g:jedi#goto_command = "<leader>d"
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>D"
@@ -537,7 +538,7 @@ inoremap jk <Esc>
 inoremap kj <Esc>
 
 " Reformat paragraph.
-nnoremap <Leader>rp vipJVgq
+nnoremap <Leader>pp vipJVgq
 
 " Toggle paste mode.
 
@@ -642,10 +643,16 @@ nnoremap <silent> ;; :call fzf#run({
 
 " -------------------------------- Dispatch ----------------------------------
 let g:dispatch_no_maps = 1
+
+" autocmd FileType c setl makeprg=clang\ -Wall\ -Werror\ %
+autocmd FileType c setl makeprg=clang\ -Werror\ -std=c99\ %
+autocmd FileType c nnoremap <leader>c :w \| Make<cr>
+" autocmd FileType c nnoremap <leader>x :Dispatch ./%:r<cr>
+autocmd FileType c nnoremap <leader>r :Dispatch ./a.out<cr>
 " autocmd FileType c let b:dispatch = 'gcc % -Wall -Werror; echo "\na.out:"; ./a.out'
 " autocmd FileType c let b:dispatch = 'gcc % -Wall -Werror && ./a.out'
 " autocmd FileType tex let b:dispatch = 'pdflatex -synctex=1 -interaction nonstopmode %'
-autocmd FileType python let b:dispatch = 'python3 %'
+autocmd FileType python let b:dispatch = 'python %'
 " autocmd FileType python nnoremap <leader>x :w \| :Dispatch<CR>
 
 " nnoremap <F5> :w \| :Dispatch<CR>

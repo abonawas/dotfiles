@@ -4,7 +4,7 @@
 # Path to your oh-my-zsh installation.
 source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 export ZSH=~/dotfiles/oh-my-zsh
-export PATH="$PATH":~/.cabal/bin
+export PATH="~/Library/Haskell/bin/:$PATH"
 # export PATH=~/anaconda/bin:"$PATH"
 export EDITOR=nvim
 export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
