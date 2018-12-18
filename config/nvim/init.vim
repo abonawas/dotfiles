@@ -196,8 +196,8 @@ set tags=./tags;/           " Search for a file called tags. If it is not
                             " algorithm for encrypting files.
 
 let g:python_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
-" let g:python3_host_prog = '~/anaconda/bin/python3'
+" let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/Users/abonawas/anaconda3/bin/python3'
 
 " Save only the given options when using 'mksession'.
 set sessionoptions=blank,buffers,curdir,folds,help,tabpages,unix
@@ -339,11 +339,14 @@ let g:ale_linters = {
 " ---------------------------Deoplete ----------------------------
 
 let g:deoplete#enable_at_startup = 1
-"set completeopt-=preview
-autocmd CompleteDone * pclose!
+" set completeopt-=preview
+" autocmd CompleteDone * pclose!
 
-let g:deoplete#sources#jedi#python_path = "python"
-let g:deoplete#sources#jedi#show_docstring = 1
+" let g:deoplete#sources#jedi#python_path = "/Users/abonawas/anaconda3/bin/python3"
+" let g:deoplete#sources#jedi#show_docstring = 1
+" let g:deoplete#enable_smart_case = 1
+" let g:deoplete#disable_auto_complete = 1
+" let g:deoplete#auto_complete_delay = 50
 
 if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
@@ -353,15 +356,14 @@ let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
 
 " ----------------------------- Jedi --------------------------------
 
-let g:jedi#force_py_version = 3
-let g:jedi#completions_enabled = 1
+" let g:jedi#force_py_version = 3
+let g:jedi#completions_enabled = 0
 let g:jedi#goto_command = "<leader>d"
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>D"
 let g:jedi#documentation_command = "K"
 ""let g:jedi#usages_command = ""
 let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<leader><leader>"
 let g:jedi#rename_command = "<leader>r"
 
 

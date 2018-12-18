@@ -1,9 +1,10 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+#
 
 # Path to your oh-my-zsh installation.
 source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
-export ZSH=~/dotfiles/oh-my-zsh
+export ZSH=~/.oh-my-zsh
 export PATH="~/Library/Haskell/bin/:$PATH"
 # export PATH=~/anaconda/bin:"$PATH"
 export EDITOR=nvim
@@ -101,3 +102,4 @@ bindkey "^[P" up-line-or-beginning-search
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+fpath+=${ZDOTDIR:-~}/.zsh_functions
