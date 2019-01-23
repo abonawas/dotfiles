@@ -61,7 +61,7 @@ Plugin 'Shougo/deoplete.nvim'
 Plugin 'zchee/deoplete-jedi'
 
 Plugin 'zchee/deoplete-clang'
-let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/7.0.0/lib/libclang.dylib'
+let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/7.0.1/lib/libclang.dylib'
 Plugin 'Shougo/neoinclude.vim'
 
 Plugin 'w0rp/ale'
