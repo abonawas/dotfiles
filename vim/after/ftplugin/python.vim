@@ -1,6 +1,0 @@
-" Basic Python preferences.
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set textwidth=80
-"set colorcolumn=+1
