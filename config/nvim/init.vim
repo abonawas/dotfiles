@@ -22,28 +22,30 @@ Plugin 'gmarik/vundle'
 
 " Lightline is a nice alternative to Powerline.
 Plugin 'itchyny/lightline.vim'
-Plugin 'eagletmt/neco-ghc'
-Plugin 'neovimhaskell/haskell-vim'
-Plugin 'eagletmt/ghcmod-vim'
+" Plugin 'eagletmt/neco-ghc'
+" Plugin 'neovimhaskell/haskell-vim'
+" Plugin 'eagletmt/ghcmod-vim'
+" Plugin 'Twinside/vim-hoogle'
 Plugin 'Shougo/vimproc.vim'
-Plugin 'Twinside/vim-hoogle'
-Plugin 'Shougo/echodoc.vim'
-let g:echodoc#enable_at_startup = 1
+" Plugin 'Shougo/echodoc.vim'
+" set cmdheight=2
+" let g:echodoc#enable_at_startup = 1
+" let g:echodoc#type = 'virtual'
 
 " A whole collection of language support files.
 " Plugin 'sheerun/vim-polyglot'
 " let g:polyglot_disabled = ['latex']
 
 " Nyan cat is critical.
-Plugin 'koron/nyancat-vim'
+" Plugin 'koron/nyancat-vim'
 
 " Tim Pope FTW.
 Plugin 'tpope/vim-fugitive'
 Plugin 'jreybert/vimagit'
 
 Plugin 'tpope/vim-dispatch'
-" Plugin 'radenling/vim-dispatch-neovim'
-" Plugin 'skywind3000/asyncrun.vim'
+Plugin 'radenling/vim-dispatch-neovim'
+Plugin 'skywind3000/asyncrun.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-unimpaired'
@@ -60,9 +62,9 @@ Plugin 'tpope/vim-commentary'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'zchee/deoplete-jedi'
 
-Plugin 'zchee/deoplete-clang'
-let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/7.0.1/lib/libclang.dylib'
-Plugin 'Shougo/neoinclude.vim'
+" Plugin 'zchee/deoplete-clang'
+" let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/7.0.1/lib/libclang.dylib'
+" Plugin 'Shougo/neoinclude.vim'
 
 Plugin 'w0rp/ale'
 
@@ -76,29 +78,29 @@ Plugin 'w0rp/ale'
 " Plugin 'Shougo/neosnippet-snippets'
 " Plugin 'honza/vim-snippets'
 
-Plugin 'christoomey/vim-tmux-navigator'
+" Plugin 'christoomey/vim-tmux-navigator'
 " Plugin 'ervandew/supertab'
-Plugin 'gcmt/wildfire.vim'
+"Plugin 'gcmt/wildfire.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'junegunn/vim-easy-align'
-Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'Lokaltog/vim-easymotion'
 
 Plugin 'majutsushi/tagbar'
-Plugin 'mattn/emmet-vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'rking/ag.vim'
+"" Plugin 'mattn/emmet-vim'
+"" Plugin 'mileszs/ack.vim'
+"" Plugin 'rking/ag.vim'
 
 
 Plugin 'davidhalter/jedi-vim'
-Plugin 'drewtempelmeyer/palenight.vim'
-"Plugin 'nvie/vim-flake8'
+"Plugin 'drewtempelmeyer/palenight.vim'
+""Plugin 'nvie/vim-flake8'
 Plugin 'morhetz/gruvbox'
 " Plugin 'honza/writer.vim'
 " Plugin 'beloglazov/vim-online-thesaurus'
-Plugin 'junegunn/goyo.vim'
+" Plugin 'junegunn/goyo.vim'
 " Plugin 'amix/vim-zenroom2'
 " Plugin 'chrisbra/csv.vim'
-" Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'ntpeters/vim-better-whitespace'
 " Plugin 'qpkorr/vim-bufkill'
 
 " Markdown Plugins
@@ -112,15 +114,15 @@ Plugin 'junegunn/goyo.vim'
 " Plugin 'vim-pandoc/vim-pandoc-syntax'
 " Plugin 'vim-pandoc/vim-rmarkdown'
 
-Plugin 'lervag/vimtex'
-let g:vimtex_compiler_progname = 'nvr'
-let g:vimtex_view_method = 'skim'
+" Plugin 'lervag/vimtex'
+" let g:vimtex_compiler_progname = 'nvr'
+" let g:vimtex_view_method = 'skim'
 
 
 
 call vundle#end()
 
-set rtp+=/usr/local/opt/fzf " could be worth it to switch to plug
+set rtp+=~/local/stow/fzf " could be worth it to switch to plug
 source ~/dotfiles/vim/after/plugin/*
 
 
@@ -129,6 +131,11 @@ if vundle_autoinstall
     echo ""
     :BundleInstall
 endif
+
+
+"}}}
+
+"{{{General
 
 if &termencoding == ""
     let &termencoding = &encoding
@@ -141,16 +148,16 @@ filetype plugin indent on
 " Now enable syntax highlighting and filetype stuff.
 syntax on
 set lazyredraw
-set synmaxcol=128
+set synmaxcol=300
 syntax sync minlines=256
 
 
-"}}}
-
-"{{{General
-
 " ---------------------- Basic configuration settings ------------------------
 set autoindent              " Maintain indent levels automatically.
+set tabstop=4               " The best tab stop is 4.
+set shiftwidth=4            " That means I like to indent by that amount as well.
+set expandtab
+
 set backspace=2             " Allow backspacing in basically every possible
                             " situation (the way I like it).
 set foldcolumn=4            " Show a 4-column gutter to the left for
@@ -167,11 +174,7 @@ set linebreak wrap          " Wrap text while typing (this is a soft wrap
                             " without textwidth set).
 set mouse=a                 " Allow use of the mouse in all situations.
 set number                  " Use line numbering.
-set shiftwidth=4            " That means I like to indent by that amount as
-                            " well.
 set showcmd                 " Show commands as I am typing them.
-set ts=4                    " The best tab stop is 4.
-set expandtab
 set whichwrap=h,l,~,[,]     " These keys will move the cursor over line
                             " boundaries ('wrap').
 set wildmenu                " Tab completion for files with horizontal list
@@ -192,12 +195,11 @@ set fileformats=unix,dos    " Create UNIX format files by default, but
 set tags=./tags;/           " Search for a file called tags. If it is not
                             " found in the current directory, continue up one
                             " directory at a time until we reach /.
-"set cryptmethod=blowfish    " Use the much stronger and more secure Blowfish
+" set cryptmethod=blowfish    " Use the much stronger and more secure Blowfish
                             " algorithm for encrypting files.
 
-let g:python_host_prog = '/usr/local/bin/python'
-" let g:python3_host_prog = '/usr/local/bin/python3'
-let g:python3_host_prog = '/Users/abonawas/anaconda3/bin/python3'
+let g:python_host_prog = '/scratch/ovs72384/pipenv/py2-7G7dJZvA/bin/python'
+let g:python3_host_prog = '/scratch/ovs72384/pipenv/py3-q2LmpPTX/bin/python'
 
 " Save only the given options when using 'mksession'.
 set sessionoptions=blank,buffers,curdir,folds,help,tabpages,unix
@@ -205,37 +207,39 @@ set sessionoptions=blank,buffers,curdir,folds,help,tabpages,unix
 " If there is support for the unnamed plus register (default X11 clipboard), use
 " it as the default yank, delete, change, and put operations.
 set clipboard=unnamed
-" if has('unnamedplus')
-"     set clipboard=unnamedplus
-" endif
+if has('unnamedplus')
+    set clipboard=unnamedplus
+endif
 
 " Set my colorscheme.
-colorscheme Tomorrow-Night
-"
-"if &term =~ '256color'
-"    " disable background color erase
-"    set t_ut=
-"endif
-"if $TERM == "xterm-256color"
-"  set t_Co=256
-"endif
-"set term=xterm-256color
+colorscheme gruvbox
+
+if &term =~ '256color'
+    " disable background color erase
+    set t_ut=
+endif
+if $TERM == "xterm-256color"
+  set t_Co=256
+endif
+set term=xterm-256color
 
 " Don't create backup files when editing in these locations.
 set backupskip=/tmp/*,/private/tmp/*
 
 " Display unprintable characters in a particular way.
 " Leave *list* turned off by default, though.
-set nolist listchars=tab:›\ ,trail:-,extends:>,precedes:<,eol:¬
+set list
+set listchars=tab:›\ ,trail:-,extends:>,precedes:<,eol:¬
+
 
 " Allow the html syntax file to recognize improper comments.
 " Because I use them. Improperly.
-let g:html_wrong_comments = 1
+" let g:html_wrong_comments = 1
 
-" A couple of environment variables for the spelling stuff.
+" " A couple of environment variables for the spelling stuff.
 let IspellLang = 'english'
 
-" ------------------------- Version-specific options -------------------------
+" " ------------------------- Version-specific options -------------------------
 if v:version > 702
     set undofile
     set undolevels=1000
@@ -253,22 +257,22 @@ endif
 
 "{{{ Haskell
 
-autocmd FileType haskell setl makeprg=ghc\ --make\ %
-autocmd FileType haskell nnoremap <leader>c :w \| Make<cr>
-autocmd FileType haskell nnoremap <leader>r :Dispatch ./%:r<cr>
-" autocmd FileType haskell setl errorformat=%E%f:%l:%c:,%C\ %.%m,%Z,%f:%l:%c:%m
+" autocmd FileType haskell setl makeprg=ghc\ --make\ %
+" autocmd FileType haskell nnoremap <leader>c :w \| Make<cr>
+" autocmd FileType haskell nnoremap <leader>r :Dispatch ./%:r<cr>
+" " autocmd FileType haskell setl errorformat=%E%f:%l:%c:,%C\ %.%m,%Z,%f:%l:%c:%m
 
-let $PATH .= (":" . $HOME . "/.cabal/bin" . ":" . $HOME . "/Library/Haskell/bin")
-let g:necoghc_enable_detailed_browse = 1
+" let $PATH .= (":" . $HOME . "/.cabal/bin" . ":" . $HOME . "/Library/Haskell/bin")
+" let g:necoghc_enable_detailed_browse = 1
 
 
-let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+" let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+" let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+" let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+" let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+" let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+" let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+" let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 "}}}
 
 "{{{ Plugin Settings
@@ -348,11 +352,6 @@ let g:deoplete#enable_at_startup = 1
 " let g:deoplete#disable_auto_complete = 1
 " let g:deoplete#auto_complete_delay = 50
 
-if !exists('g:deoplete#omni#input_patterns')
-  let g:deoplete#omni#input_patterns = {}
-endif
-let g:deoplete#omni#input_patterns.tex = g:vimtex#re#deoplete
-
 
 " ----------------------------- Jedi --------------------------------
 
@@ -372,9 +371,9 @@ let g:tagbar_autoclose = 1
 nmap <Leader>tt :TagbarToggle<CR>
 
 " -------------------------------- NERDTree ----------------------------------
-map <c-t> :NERDTreeToggle<CR>
-let NERDTreeDirArrows=1
-let NERDTreeQuitOnOpen=0
+" map <c-t> :NERDTreeToggle<CR>
+" let NERDTreeDirArrows=1
+" let NERDTreeQuitOnOpen=0
 
 " --------------------------------- CtrlP ------------------------------------
 " let g:ctrlp_open_new_file = 'h'
@@ -395,10 +394,6 @@ let NERDTreeQuitOnOpen=0
 "     \ 'file': '\.so$|\.dat$|\.DS_Store$|Thumbs.db|\.pdf$|\.jpg$|\.png$|\.ttf$|\.gif$'
 \ }
 
-
-" ------------------------------- Investigate -------------------------------
-" I'm using devdocs.io because searches on php.net never work. Thanks, php.net.
-let g:investigate_url_for_php="http://devdocs.io/#q=^s"
 
 " -------------------------------- Wildfire ---------------------------------
 let g:wildfire_fuel_map = "+"
@@ -810,8 +805,7 @@ set laststatus=2
 
 
 
-colorscheme gruvbox
-set noshowmode
+" set noshowmode
 " set background=light
 " highlight Normal ctermbg=none "== bad : makes so no true color
 " highlight NonText ctermbg=none ctermfg=none
