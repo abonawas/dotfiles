@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/Users/Ecohydro/dotfiles/vim/ftplugin'
-let g:netrw_dirhist_2='/Users/ammory999/gdrive/3/px319'
-let g:netrw_dirhist_3='/Users/ammory999/gdrive/3/cs342/assignment1/data'
-let g:netrw_dirhist_4='/Users/abonawas/.config/kitty'
-let g:netrw_dirhist_5='/Users/abonawas/Downloads/qmk_firmware/keyboards/planck/keymaps/abonawas'
