@@ -5,5 +5,5 @@ vim/color/**
 
 config/nvim/.netrwhist
 config/nvim/plugged/**
-
+config/nvim/autoload/plug.vim
 
