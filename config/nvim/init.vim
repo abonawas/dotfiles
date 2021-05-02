@@ -1,135 +1,111 @@
-" Don't be compatible with vi.  
+" Don't be compatible with vi.
 set nocompatible
 filetype off
 
-"{{{Vundle
+"{{{Plug
+"
 
-let vundle_autoinstall = 0
-let vundle_readme = expand('~/.vim/bundle/vundle/README.md')
-if !filereadable(vundle_readme)
-    echo "Installing Vundle..."
-    echo ""
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-    let vundle_autoinstall = 1
-endif
+if 1
+    call plug#begin()
+    Plug 'itchyny/lightline.vim'
+    " Plug 'eagletmt/neco-ghc'
+    " Plug 'neovimhaskell/haskell-vim'
+    " Plug 'eagletmt/ghcmod-vim'
+    " Plug 'Twinside/vim-hoogle'
+    Plug 'Shougo/vimproc.vim'
+    " Plug 'Shougo/echodoc.vim'
+    " set cmdheight=2
+    " let g:echodoc#enable_at_startup = 1
+    " let g:echodoc#type = 'virtual'
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#begin()
+    " A whole collection of language support files.
+    " Plug 'sheerun/vim-polyglot'
+    " let g:polyglot_disabled = ['latex']
 
-" Vundle manages Vundle. Vundleception!
-Plugin 'gmarik/vundle'
+    " Nyan cat is critical.
+    " Plug 'koron/nyancat-vim'
 
-" Lightline is a nice alternative to Powerline.
-Plugin 'itchyny/lightline.vim'
-" Plugin 'eagletmt/neco-ghc'
-" Plugin 'neovimhaskell/haskell-vim'
-" Plugin 'eagletmt/ghcmod-vim'
-" Plugin 'Twinside/vim-hoogle'
-Plugin 'Shougo/vimproc.vim'
-" Plugin 'Shougo/echodoc.vim'
-" set cmdheight=2
-" let g:echodoc#enable_at_startup = 1
-" let g:echodoc#type = 'virtual'
+    " Tim Pope FTW.
+    Plug 'tpope/vim-fugitive'
+    Plug 'jreybert/vimagit'
 
-" A whole collection of language support files.
-" Plugin 'sheerun/vim-polyglot'
-" let g:polyglot_disabled = ['latex']
+    Plug 'tpope/vim-sleuth'
+    Plug 'tpope/vim-dispatch'
+    Plug 'radenling/vim-dispatch-neovim'
+    Plug 'skywind3000/asyncrun.vim'
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-unimpaired'
+    Plug 'tpope/vim-vinegar'
+    Plug 'tpope/vim-obsession'
+    Plug 'tpope/vim-eunuch'
+    Plug 'tpope/vim-commentary'
 
-" Nyan cat is critical.
-" Plugin 'koron/nyancat-vim'
+    " Plug 'kassio/neoterm'
+    " Plug 'janko-m/vim-test'
 
-" Tim Pope FTW.
-Plugin 'tpope/vim-fugitive'
-Plugin 'jreybert/vimagit'
+    " Scrooloose FTW.
+    " Plug 'scrooloose/nerdtree'
+    Plug 'Shougo/deoplete.nvim', { 'for': ['python'] }
+    Plug 'zchee/deoplete-jedi', { 'for': ['python'] }
 
-Plugin 'tpope/vim-dispatch'
-Plugin 'radenling/vim-dispatch-neovim'
-Plugin 'skywind3000/asyncrun.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-vinegar'
-Plugin 'tpope/vim-obsession'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-commentary'
+    " Plug 'zchee/deoplete-clang'
+    " let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/7.0.1/lib/libclang.dylib'
+    " Plug 'Shougo/neoinclude.vim'
 
-" Plugin 'kassio/neoterm'
-" Plugin 'janko-m/vim-test'
-
-" Scrooloose FTW.
-" Plugin 'scrooloose/nerdtree'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'zchee/deoplete-jedi'
-
-" Plugin 'zchee/deoplete-clang'
-" let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/7.0.1/lib/libclang.dylib'
-" Plugin 'Shougo/neoinclude.vim'
-
-Plugin 'w0rp/ale'
+    Plug 'w0rp/ale', { 'for': ['python'] }
 
 
-") Helpers.
-" Plugin 'Keithbsmiley/investigate.vim'
-" let g:investigate_use_dash=1
+    ") Helpers.
+    " Plug 'Keithbsmiley/investigate.vim'
+    " let g:investigate_use_dash=1
 
-" Plugin 'SirVer/ultisnips'
-" Plugin 'Shougo/neosnippet.vim'
-" Plugin 'Shougo/neosnippet-snippets'
-" Plugin 'honza/vim-snippets'
+    " Plug 'SirVer/ultisnips'
+    " Plug 'Shougo/neosnippet.vim'
+    " Plug 'Shougo/neosnippet-snippets'
+    " Plug 'honza/vim-snippets'
 
-" Plugin 'christoomey/vim-tmux-navigator'
-" Plugin 'ervandew/supertab'
-"Plugin 'gcmt/wildfire.vim'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'junegunn/vim-easy-align'
-"Plugin 'Lokaltog/vim-easymotion'
+    " Plug 'christoomey/vim-tmux-navigator'
+    " Plug 'ervandew/supertab'
+    "Plug 'gcmt/wildfire.vim'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'junegunn/vim-easy-align'
+    "Plug 'Lokaltog/vim-easymotion'
 
-Plugin 'majutsushi/tagbar'
-"" Plugin 'mattn/emmet-vim'
-"" Plugin 'mileszs/ack.vim'
-"" Plugin 'rking/ag.vim'
-
-
-Plugin 'davidhalter/jedi-vim'
-"Plugin 'drewtempelmeyer/palenight.vim'
-""Plugin 'nvie/vim-flake8'
-Plugin 'morhetz/gruvbox'
-" Plugin 'honza/writer.vim'
-" Plugin 'beloglazov/vim-online-thesaurus'
-" Plugin 'junegunn/goyo.vim'
-" Plugin 'amix/vim-zenroom2'
-" Plugin 'chrisbra/csv.vim'
-Plugin 'ntpeters/vim-better-whitespace'
-" Plugin 'qpkorr/vim-bufkill'
-
-" Markdown Plugins
-" Plugin 'tpope/vim-markdown'
-" Plugin 'iamcco/markdown-preview.vim'
-" Plugin 'iamcco/mathjax-support-for-mkdp'
-" Plugin 'godlygeek/tabular'
-" Plugin 'plasticboy/vim-markdown'
-
-" Plugin 'vim-pandoc/vim-pandoc'
-" Plugin 'vim-pandoc/vim-pandoc-syntax'
-" Plugin 'vim-pandoc/vim-rmarkdown'
-
-" Plugin 'lervag/vimtex'
-" let g:vimtex_compiler_progname = 'nvr'
-" let g:vimtex_view_method = 'skim'
+    Plug 'majutsushi/tagbar'
+    "" Plug 'mattn/emmet-vim'
+    "" Plug 'mileszs/ack.vim'
+    "" Plug 'rking/ag.vim'
 
 
+    Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
+    "Plug 'drewtempelmeyer/palenight.vim'
+    ""Plug 'nvie/vim-flake8'
+    Plug 'morhetz/gruvbox'
+    " Plug 'honza/writer.vim'
+    " Plug 'beloglazov/vim-online-thesaurus'
+    " Plug 'junegunn/goyo.vim'
+    " Plug 'amix/vim-zenroom2'
+    " Plug 'chrisbra/csv.vim'
+    Plug 'ntpeters/vim-better-whitespace'
+    " Plug 'qpkorr/vim-bufkill'
 
-call vundle#end()
+    " Markdown Plug
+    " Plug 'tpope/vim-markdown'
+    " Plug 'iamcco/markdown-preview.vim'
+    " Plug 'iamcco/mathjax-support-for-mkdp'
+    " Plug 'godlygeek/tabular'
+    " Plug 'plasticboy/vim-markdown'
 
-set rtp+=~/local/stow/fzf " could be worth it to switch to plug
-source ~/dotfiles/vim/after/plugin/*
+    " Plug 'vim-pandoc/vim-pandoc'
+    " Plug 'vim-pandoc/vim-pandoc-syntax'
+    " Plug 'vim-pandoc/vim-rmarkdown'
 
-
-if vundle_autoinstall
-    echo "Installing bundles..."
-    echo ""
-    :BundleInstall
+    " Plug 'lervag/vimtex'
+    " let g:vimtex_compiler_progname = 'nvr'
+    " let g:vimtex_view_method = 'skim'
+    Plug '~/local/stow/fzf'
+    call plug#end()
 endif
 
 
@@ -221,7 +197,7 @@ endif
 if $TERM == "xterm-256color"
   set t_Co=256
 endif
-set term=xterm-256color
+" set term=xterm-256color
 
 " Don't create backup files when editing in these locations.
 set backupskip=/tmp/*,/private/tmp/*
@@ -596,9 +572,10 @@ nnoremap <C-w>d <C-w><Down><C-w>_
 
 " --------------------------------- Fzf ------------------------------------
 
+
 nnoremap <silent> <Leader>e :call fzf#run({
 \   'down': '40%',
-\   'sink': 'botright split' })<CR>
+\   'sink': 'e' })<CR>
 
 function! s:buflist()
   redir => ls
