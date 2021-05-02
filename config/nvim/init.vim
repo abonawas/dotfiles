@@ -46,7 +46,7 @@ if 1
 
     " Scrooloose FTW.
     " Plug 'scrooloose/nerdtree'
-    Plug 'Shougo/deoplete.nvim', { 'for': ['python'] }
+    Plug 'Shougo/deoplete.nvim'
     Plug 'zchee/deoplete-jedi', { 'for': ['python'] }
 
     " Plug 'zchee/deoplete-clang'
@@ -104,7 +104,12 @@ if 1
     " Plug 'lervag/vimtex'
     " let g:vimtex_compiler_progname = 'nvr'
     " let g:vimtex_view_method = 'skim'
-    Plug '~/local/stow/fzf'
+
+    if has('mac')
+        Plug '/usr/local/opt/fzf'
+    else
+        Plug '~/local/stow/fzf'
+    endif
     call plug#end()
 endif
 
@@ -174,8 +179,15 @@ set tags=./tags;/           " Search for a file called tags. If it is not
 " set cryptmethod=blowfish    " Use the much stronger and more secure Blowfish
                             " algorithm for encrypting files.
 
-let g:python_host_prog = '/scratch/ovs72384/pipenv/py2-7G7dJZvA/bin/python'
-let g:python3_host_prog = '/scratch/ovs72384/pipenv/py3-q2LmpPTX/bin/python'
+if has('mac')
+    let g:python_host_prog = '~/.local/share/virtualenvs/py2-mUad7dkp/bin/python'
+    let g:python3_host_prog = '~/.local/share/virtualenvs/py3-pgzJxJMy/bin/python'
+    " let g:python3_host_prog = '~/anaconda3/envs/neovim/bin/python'
+else
+    let g:python_host_prog = '/scratch/ovs72384/pipenv/py2-7G7dJZvA/bin/python'
+    let g:python3_host_prog = '/scratch/ovs72384/pipenv/py3-q2LmpPTX/bin/python'
+endif
+
 
 " Save only the given options when using 'mksession'.
 set sessionoptions=blank,buffers,curdir,folds,help,tabpages,unix
@@ -197,7 +209,7 @@ endif
 if $TERM == "xterm-256color"
   set t_Co=256
 endif
-" set term=xterm-256color
+
 
 " Don't create backup files when editing in these locations.
 set backupskip=/tmp/*,/private/tmp/*
@@ -279,7 +291,7 @@ let g:ale_set_quickfix = 0
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'typescript': ['tslint', 'tsserver'],
-\   'python'    : ['pylint'],
+\   'python'    : ['flake8'],
 \   'haskell'   : ['ghc-mod']
 \}
 
@@ -621,7 +633,13 @@ let g:dispatch_no_maps = 1
 " autocmd FileType c setl makeprg=clang\ -Wall\ -Werror\ %
 autocmd FileType c setl makeprg=clang\ -Werror\ -std=c99\ %
 autocmd FileType c nnoremap <leader>c :w \| Make<cr>
-" autocmd FileType c nnoremap <leader>x :Dispatch ./%:r<cr>
+autocmd FileType cpp nnoremap <leader>c :w \| !g++ -O0 -Wall -std=c++17 %<cr>
+autocmd FileType cpp nnoremap <leader>r :w \| !g++ -O0 -Wall -std=c++17 % && ./a.out<cr>
+
+autocmd FileType c let b:dispatch = 'gcc -g % -I/usr/local/opt/lapack/include -L/usr/local/opt/lapack/lib -std=c99 -Wall -Werror -llapacke -llapack -lblas -lm'
+" autocmd FileType c let b:dispatch = 'gcc -g % -I/usr/local/opt/lapack/include -L/usr/local/opt/lapack/lib -std=c99  -llapacke -llapack -lblas -lm'
+autocmd FileType c nnoremap <leader>x :w \| :Dispatch<CR><CR><CR><CR><CR>
+
 autocmd FileType c nnoremap <leader>r :Dispatch ./a.out<cr>
 " autocmd FileType c let b:dispatch = 'gcc % -Wall -Werror; echo "\na.out:"; ./a.out'
 " autocmd FileType c let b:dispatch = 'gcc % -Wall -Werror && ./a.out'
@@ -773,7 +791,6 @@ set statusline+=%#statuslinenc#
 
 set statusline+=%=								"left/right separator
 set statusline+=%#statusline#
-set statusline+=%{StatuslineCurrentHighlight()}\ \ "current highlight
 set statusline+=%c,								"cursor column
 set statusline+=%l/%L							"cursor line/total lines
 set statusline+=\ %P							"percent through file
