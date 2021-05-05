@@ -7,7 +7,10 @@ filetype off
 
 if 1
     call plug#begin()
-    Plug 'itchyny/lightline.vim'
+
+    Plug 'airblade/vim-gitgutter'
+    Plug 'vim-airline/vim-airline'
+    " Plug 'itchyny/lightline.vim'
     " Plug 'eagletmt/neco-ghc'
     " Plug 'neovimhaskell/haskell-vim'
     " Plug 'eagletmt/ghcmod-vim'
@@ -46,7 +49,7 @@ if 1
 
     " Scrooloose FTW.
     " Plug 'scrooloose/nerdtree'
-    Plug 'Shougo/deoplete.nvim'
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'zchee/deoplete-jedi', { 'for': ['python'] }
 
     " Plug 'zchee/deoplete-clang'
@@ -499,24 +502,8 @@ nnoremap <leader>w :w<cr>
 inoremap <leader>w <C-c>:w<cr>
 
 
-"inoremap <Leader><Tab> <Esc>:call HangingIndentAlignCol()<CR>a
-
-" Add ten spaces before the cursor with ,<Space>. Handy for re-indenting lines
-" that don't automatically wrap (like wrapping docblock comments).
-
-" Change colors (mnemonic: change your colors {light|dark}).
-nnoremap cycl :colorscheme gruvbox<CR>
-nnoremap cycd :colorscheme xoria256<CR>
-
-" Pass the selected lines through tidy with ,x.
+" Pass the selected lines through tidy with ,hh.
 vnoremap <Leader>hh :<Home>silent <End>!tidy -q -i --show-errors 0<CR>
-
-" Try to ween myself off of pressing zero ALL THE TIME.
-"" "nnoremap 0 :echoe "Stop doing that!"<CR>
-"""""""
-
-" Instead of using the not-so-awesome 'gf', use my awesome one.
-" nnoremap gf :call Awesomegf()<CR>
 
 " Let's try this for a while. I'm still skeptical.
 inoremap jk <Esc>
@@ -546,18 +533,14 @@ nnoremap g/ :g//<CR>
 " Y yanks to the end of the line, as you would expect it to.
 nnoremap Y y$
 
-" Leader-s toggles syntastic, which displays errors for 'interpretable' files.
-"nnoremap <Leader>s :SyntasticToggleMode<CR>
-
 " Create surrounding HTML tags out of the word near the cursor.
 inoremap <Leader>a <Esc>viwc<"></"><Esc>cit
-"
+
 " Indent or 'outdent' the last 'put' block with shift-tab (outdent) and tab
 " (indent). This way you can put a block and immediately move it to the
 " correct indention. This is probably my favorite mapping.
-
-" nnoremap <S-Tab> '[<lt>']
-" nnoremap <Tab> '[>']
+nnoremap <S-Tab> '[<lt>']
+nnoremap <Tab> '[>']
 
 
 " Ctrl-E while in insert mode moves the cursor to the end of the line, a la
@@ -578,7 +561,6 @@ noremap $ g$
 " either up or down and maximizes it all at once (accordion mode).
 nnoremap <C-w>u <C-w><Up><C-w>_
 nnoremap <C-w>d <C-w><Down><C-w>_
-
 
 
 
@@ -662,7 +644,6 @@ vnoremap # "zy?\V<C-r>z<CR>
 vnoremap <Leader>a :EasyAlign<CR>
 
 
-
 " vim: set et ts=4 sw=4 :
 "}}}
 
@@ -685,62 +666,62 @@ vnoremap <Leader>a :EasyAlign<CR>
 " vim: set et ts=4 sw=4 :
 "}}}
 
-"{{{Lightline
+""{{{Lightline
 
-let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
-      \ 'mode_map': { 'c': 'NORMAL' },
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
-      \ },
-      \ 'component_function': {
-      \   'fugitive': 'LLFugitive',
-      \   'filename': 'LLFilename',
-      \   'fileformat': 'LLFileFormat',
-      \   'filetype': 'LLFileType',
-      \   'fileencoding': 'LLFileEncoding',
-      \   'mode': 'LLMode'
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' }
-      \ }
+"let g:lightline = {
+"      \ 'colorscheme': 'jellybeans',
+"      \ 'mode_map': { 'c': 'NORMAL' },
+"      \ 'active': {
+"      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+"      \ },
+"      \ 'component_function': {
+"      \   'fugitive': 'LLFugitive',
+"      \   'filename': 'LLFilename',
+"      \   'fileformat': 'LLFileFormat',
+"      \   'filetype': 'LLFileType',
+"      \   'fileencoding': 'LLFileEncoding',
+"      \   'mode': 'LLMode'
+"      \ },
+"      \ 'separator': { 'left': '', 'right': '' },
+"      \ 'subseparator': { 'left': '', 'right': '' }
+"      \ }
 
-function! LLModified()
-  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? ' +' : &modifiable ? '' : ' -'
-endfunction
+"function! LLModified()
+"  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? ' +' : &modifiable ? '' : ' -'
+"endfunction
 
-function! LLReadOnly()
-  return &ft !~? 'help\|vimfiler\|gundo' && &ro ? '!' : ''
-endfunction
+"function! LLReadOnly()
+"  return &ft !~? 'help\|vimfiler\|gundo' && &ro ? '!' : ''
+"endfunction
 
-function! LLFilename()
-  return LLReadOnly() .
-       \ ('' != expand('%t') ? expand('%t') : '[No Name]') .
-       \ LLModified()
-endfunction
+"function! LLFilename()
+"  return LLReadOnly() .
+"       \ ('' != expand('%t') ? expand('%t') : '[No Name]') .
+"       \ LLModified()
+"endfunction
 
-function! LLFugitive()
-  return &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head') && strlen(fugitive#head()) ? 'git:'.fugitive#head() : ''
-endfunction
+"function! LLFugitive()
+"  return &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head') && strlen(fugitive#head()) ? 'git:'.fugitive#head() : ''
+"endfunction
 
-function! LLFileFormat()
-  return winwidth('.') > 70 ? &fileformat : ''
-endfunction
+"function! LLFileFormat()
+"  return winwidth('.') > 70 ? &fileformat : ''
+"endfunction
 
-function! LLFileType()
-  return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
+"function! LLFileType()
+"  return winwidth('.') > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+"endfunction
 
-function! LLFileEncoding()
-  return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-endfunction
+"function! LLFileEncoding()
+"  return winwidth('.') > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+"endfunction
 
-function! LLMode()
-  return winwidth('.') > 60 ? lightline#mode() : ''
-endfunction
+"function! LLMode()
+"  return winwidth('.') > 60 ? lightline#mode() : ''
+"endfunction
 
-" vim: set et ts=4 sw=4 :
-"}}}
+"" vim: set et ts=4 sw=4 :
+""}}}
 
 "{{{Environments
 
