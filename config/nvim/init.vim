@@ -154,7 +154,7 @@ set ignorecase smartcase    " Case insensitive search unless caps are used
 set laststatus=2            " Always show the status line.
 set textwidth=0             " By default, don't wrap at any specific
                             " column.
-set linebreak wrap          " Wrap text while typing (this is a soft wrap
+" set linebreak wrap          " Wrap text while typing (this is a soft wrap
                             " without textwidth set).
 set mouse=a                 " Allow use of the mouse in all situations.
 set number                  " Use line numbering.
