@@ -27,7 +27,6 @@ alias trc="nvim ~/dotfiles/tmux.conf"
 alias j14="export JAVA_HOME=`/usr/libexec/java_home -v 14`"
 alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`"
 alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`"
-j8
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
