@@ -468,6 +468,10 @@ set foldtext=NeatFoldText()
 
 "{{{Mappings
 
+cnoremap <C-p> <UP>
+cnoremap <C-n> <DOWN>
+
+
 ""folding toggle
 nnoremap <Space> za
 

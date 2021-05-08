@@ -1,6 +1,10 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 #
+# User specific environment and startup programs
+if [ -f ./etc/profile ]; then
+	. ./etc/profile
+fi
 
 # Path to your oh-my-zsh installation.
 source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
@@ -15,12 +19,43 @@ alias zrc="nvim ~/dotfiles/zshrc"
 alias vrc="nvim ~/dotfiles/config/nvim/init.vim"
 alias trc="nvim ~/dotfiles/tmux.conf"
 
+alias cdd="cd /dls/science/users/ovs72384/"
+
+alias stow=$HOME/local/stow/bin/stow
+alias code=$HOME/Applications/code/bin/code
+
+# make CapsLock behave like Ctrl:
+setxkbmap -option ctrl:nocaps
+
+# make short-pressed Ctrl behave like Escape:
+$HOME/Applications/xcape/xcape -e 'Control_L=Escape'
+
+# Clean remake builder IOCs
+function cleanMake {
+    if [ $# -ge 1 ]; then
+	for IOC in "$@"
+	do
+		XMLFILE=etc/makeIocs/$IOC.xml
+		if [ -f "$XMLFILE" ]; then
+			rm -rf iocs/$IOC
+			touch $XMLFILE
+			make -C etc/makeIocs IOCS=$IOC
+			make -C iocs/$IOC
+		else
+			echo "$XMLFILE does not exist for IOC $IOC."
+		fi
+	done
+    else
+        echo "Requires IOC(s) (at least 1 argument)"
+    fi
+}
 
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
+ZSH_THEME="aussiegeek"
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -70,10 +105,14 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-HISTSIZE=1000000
-SAVEHIST=1000000
+# Change the file location because certain bash sessions truncate .bash_history file upon close.
+# http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
+export HISTFILE=~/.bash_eternal_history
+export HISTSIZE=999999999
+export SAVEHIST=999999999
 
-bindkey "^[P" up-line-or-beginning-search
+bindkey "^P" up-line-or-beginning-search
+bindkey "^N" down-line-or-beginning-search
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
