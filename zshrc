@@ -10,12 +10,24 @@ export PATH="~/Library/Haskell/bin/:$PATH"
 export EDITOR=nvim
 export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
+alias k="kubectl"
+alias ka="kubectl apply -f"
+alias kg="kubectl get"
+alias kga="kubectl get all"
+
+alias kd="kubectl describe"
+
+
 alias v="nvim"
 alias zrc="nvim ~/dotfiles/zshrc"
 alias vrc="nvim ~/dotfiles/config/nvim/init.vim"
 alias trc="nvim ~/dotfiles/tmux.conf"
 
-
+# https://www.kevinhooke.com/2017/10/05/switching-java-versions-on-mac-os/
+alias j14="export JAVA_HOME=`/usr/libexec/java_home -v 14`"
+alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`"
+alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`"
+j8
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -64,7 +76,7 @@ CASE_SENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux)
+plugins=(git tmux docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -73,7 +85,8 @@ source $ZSH/oh-my-zsh.sh
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-bindkey "^[P" up-line-or-beginning-search
+bindkey "^P" up-line-or-beginning-search
+bindkey "^N" down-line-or-beginning-search
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
