@@ -23,8 +23,6 @@ alias vrc="nvim ~/dotfiles/config/nvim/init.vim"
 alias trc="nvim ~/dotfiles/tmux.conf"
 
 
-bindkey "^P" up-line-or-beginning-search
-bindkey "^N" down-line-or-beginning-search
 
 # Change the file location because certain bash sessions truncate .bash_history file upon close.
 # http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
@@ -130,11 +128,13 @@ CASE_SENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux docker)
+plugins=(git tmux zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+bindkey "^P" up-line-or-beginning-search
+bindkey "^N" down-line-or-beginning-search
 
 
 # export MANPATH="/usr/local/man:$MANPATH"

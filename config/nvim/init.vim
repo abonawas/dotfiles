@@ -616,6 +616,11 @@ nnoremap <silent> ;; :call fzf#run({
 " -------------------------------- Dispatch ----------------------------------
 let g:dispatch_no_maps = 1
 
+" bash
+autocmd FileType sh let b:dispatch = 'bash %'
+autocmd FileType sh inoremap <leader>r <C-c>:w \| Dispatch<CR>
+autocmd FileType sh nnoremap <leader>r <C-c>:w \| !bash %<CR>
+
 " autocmd FileType c setl makeprg=clang\ -Wall\ -Werror\ %
 autocmd FileType c setl makeprg=clang\ -Werror\ -std=c99\ %
 autocmd FileType c nnoremap <leader>c :w \| Make<cr>
